@@ -1,39 +1,23 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import log from 'loglevel';
 
-import HeaderBarComponent from 'd2-ui/lib/app-header/HeaderBar';
-import headerBarStore$ from 'd2-ui/lib/app-header/headerBar.store';
-import withStateFrom from 'd2-ui/lib/component-helpers/withStateFrom';
-
+import HeaderBar from '../header/HeaderBar';
 import Sidebar from 'd2-ui/lib/sidebar/Sidebar.component';
+import SinglePanelLayout from 'd2-ui/lib/layouts/SinglePanel.component';
+import Heading from 'd2-ui/lib/headings/Heading.component';
+import Translate from '../utils/Translate';
+import MenuManagement from '../menu-management/MenuManagement';
 
-const HeaderBar = withStateFrom(headerBarStore$, HeaderBarComponent);
-
-export default React.createClass({
-    propTypes: {
-        name: React.PropTypes.string,
-        d2: React.PropTypes.object,
-    },
-
-    childContextTypes: {
-        d2: React.PropTypes.object,
-    },
-
-    getDefaultProps() {
-        return {
-            name: 'John',
-        };
-    },
-
+export default class App extends Component {
     getChildContext() {
         return {
             d2: this.props.d2,
         };
-    },
+    }
 
     _sidebarItemClicked(sideBarItemKey) {
         log.info('Clicked on ', sideBarItemKey);
-    },
+    }
 
     render() {
         const sideBarSections = [
@@ -44,12 +28,26 @@ export default React.createClass({
         return (
             <div className="app-wrapper">
                 <HeaderBar />
-                <Sidebar
-                    sections={sideBarSections}
-                    onChangeSection={this._sidebarItemClicked}
-                />
-                <div className="main-content">{`Hello, ${this.props.name}! Your app skeleton set up correctly!`}</div>
+                <SinglePanelLayout>
+                    <div style={{ width: '100%' }}>
+                        <Heading><Translate>app_management</Translate></Heading>
+                        <MenuManagement />
+                    </div>
+                </SinglePanelLayout>
             </div>
         );
-    },
-});
+    }
+}
+
+App.propTypes = {
+    name: React.PropTypes.string,
+    d2: React.PropTypes.object,
+};
+
+App.childContextTypes = {
+    d2: React.PropTypes.object,
+};
+
+App.defaultProps = {
+    name: 'John',
+};
