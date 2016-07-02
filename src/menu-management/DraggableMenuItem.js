@@ -98,7 +98,7 @@ class DraggableMenuItem extends Component {
 
         const MenuItem = (
             <div
-                style={{visibility: isDragging ? 'hidden' : 'visible', padding: '.25rem'}}
+                style={{visibility: isDragging ? 'hidden' : 'visible', padding: '3px'}}
                 onMouseDown={() => this.setState({ hover: true })}
                 onMouseOver={() => this.setState({ hover: false })}
             >

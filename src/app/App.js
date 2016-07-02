@@ -7,6 +7,9 @@ import SinglePanelLayout from 'd2-ui/lib/layouts/SinglePanel.component';
 import Heading from 'd2-ui/lib/headings/Heading.component';
 import Translate from '../utils/Translate';
 import MenuManagement from '../menu-management/MenuManagement';
+import SnackBar from '../snack-bar/SnackBar';
+
+import Paper from 'material-ui/lib/paper';
 
 export default class App extends Component {
     getChildContext() {
@@ -25,13 +28,32 @@ export default class App extends Component {
             { key: 'item2', label: 'Item 2' },
         ];
 
+        const extraPaperStyle = {
+            flex: 1,
+            padding: '2rem',
+            margin: '1rem',
+            display: 'none',
+        }
+
         return (
             <div className="app-wrapper">
                 <HeaderBar />
                 <SinglePanelLayout>
                     <div style={{ width: '100%' }}>
                         <Heading><Translate>app_management</Translate></Heading>
-                        <MenuManagement />
+                        <div style={{display: 'flex'}}>
+                            <MenuManagement />
+                            <Paper style={extraPaperStyle}>
+                                <div>
+                                    Sort your menu items to the left, so the most useful ones show up on top in your drop down menu.
+
+                                    How does it work?
+
+                                    Click on one of the menu items and drag them to the preferred position.
+                                </div>
+                            </Paper>
+                        </div>
+                        <SnackBar />
                     </div>
                 </SinglePanelLayout>
             </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import log from 'loglevel';
 
 /**
  * Creates a higher order component that will pass data received from the `stateSource$` to the `BaseComponent`.
