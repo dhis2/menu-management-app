@@ -1,5 +1,5 @@
 import React from 'react';
-import SnackBar from 'material-ui/lib/snackbar';;
+import SnackBar from 'material-ui/lib/snackbar';
 import { snackBarMessage$ } from './store';
 import withStateFrom from '../utils/withStateFrom';
 
@@ -7,7 +7,7 @@ function SnackBarContainer(props) {
     const snackBarProps = props;
 
     return (
-        <SnackBar {...snackBarProps}  />
+        <SnackBar {...snackBarProps} />
     );
 }
 

@@ -48,6 +48,7 @@ getManifest('./manifest.webapp')
     .then(manifest => {
         const baseUrl = process.env.NODE_ENV === 'production' ? manifest.getBaseUrl() : dhisDevConfig.baseUrl;
         config.baseUrl = `${baseUrl}/api`;
+        config.i18n.sources.add('./i18n/menu-management.properties');
     })
     .then(init)
     .then(startApp)

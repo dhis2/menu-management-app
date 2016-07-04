@@ -26,14 +26,16 @@ export default function withStateFrom(stateSource$, BaseComponent, LoadingCompon
                 .subscribe(
                     (state) => {
                         this.valueEmitted = true;
-                        this.setState(state)
+                        this.setState(state);
                     },
                     (error) => log.error(error)
                 );
         }
 
         componentWillUnmount() {
-            this.disposable && this.disposable.dispose && this.disposable.dispose();
+            if (this.disposable && this.disposable.dispose) {
+                this.disposable.dispose();
+            }
         }
 
         render() {

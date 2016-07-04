@@ -4,31 +4,6 @@ import { menuItemStore$ } from './store';
 import { setSnackMessage } from '../snack-bar/actions';
 import log from 'loglevel';
 
-export function saveListWhenChanged(newList, oldList) {
-    const isTheSameList = newList.length === oldList.length && newList.every((item, index) => oldList[index] === item);
-
-    // No save needed when the list is the same
-    if (isTheSameList) {
-        return;
-    }
-
-    // Update the store
-    menuItemStore$.setState({
-        items: newList,
-    });
-
-    menuItemStore$
-        .take(1)
-        .flatMap(({items: menuItems}) => saveMenuItemOrder(menuItems))
-        .subscribe(
-            () => setSnackMessage('Menu items saved!'),
-            (e) => {
-                log.error(e);
-                setSnackMessage('Failed to save', 'dismiss')
-            }
-        );
-}
-
 /**
  * Saves the order of the passed menuItems to the server for the current user. This
  * changes the order of the users apps in the app menu.
@@ -47,4 +22,29 @@ export function saveMenuItemOrder(menuItems) {
             return api.post('menu', items);
         })
         .concatAll();
+}
+
+export function saveListWhenChanged(newList, oldList) {
+    const isTheSameList = newList.length === oldList.length && newList.every((item, index) => oldList[index] === item);
+
+    // No save needed when the list is the same
+    if (isTheSameList) {
+        return;
+    }
+
+    // Update the store
+    menuItemStore$.setState({
+        items: newList,
+    });
+
+    menuItemStore$
+        .take(1)
+        .flatMap(({ items: menuItems }) => saveMenuItemOrder(menuItems))
+        .subscribe(
+            () => getInstance().then((d2) => setSnackMessage(d2.i18n.getTranslation('Menu items saved!'))),
+            (e) => {
+                log.error(e);
+                getInstance().then((d2) => setSnackMessage(d2.i18n.getTranslation('Failed to save'), 'dismiss'));
+            }
+        );
 }

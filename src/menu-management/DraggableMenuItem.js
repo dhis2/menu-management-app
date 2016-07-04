@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
 import { ItemTypes } from './constants';
@@ -15,9 +15,9 @@ const cardSource = {
         };
     },
 
-    endDrag(props, monitor) {
+    endDrag(props) {
         props.onListUpdated();
-    }
+    },
 };
 
 const cardTarget = {
@@ -77,8 +77,7 @@ const cardTarget = {
 function collectForSource(connect, monitor) {
     return {
         connectDragSource: connect.dragSource(),
-        connectDragPreview: connect.dragPreview(),
-        isDragging: monitor.isDragging()
+        isDragging: monitor.isDragging(),
     };
 }
 
@@ -98,7 +97,7 @@ class DraggableMenuItem extends Component {
 
         const MenuItem = (
             <div
-                style={{visibility: isDragging ? 'hidden' : 'visible', padding: '3px'}}
+                style={{ visibility: isDragging ? 'hidden' : 'visible', padding: '3px' }}
                 onMouseDown={() => this.setState({ hover: true })}
                 onMouseOver={() => this.setState({ hover: false })}
             >
@@ -111,6 +110,11 @@ class DraggableMenuItem extends Component {
         return connectDropTarget(connectDragSource(MenuItem));
     }
 }
+DraggableMenuItem.propTypes = {
+    isDragging: PropTypes.bool,
+    connectDragSource: PropTypes.func,
+    connectDropTarget: PropTypes.func,
+};
 
 function collectForTarget(connect) {
     return {
@@ -118,6 +122,6 @@ function collectForTarget(connect) {
     };
 }
 
-const DraggableMenuItemConnected = DragSource(ItemTypes.CARD, cardSource, collectForSource)(DraggableMenuItem);
+const DraggableMenuItemConnected = DragSource(ItemTypes.CARD, cardSource, collectForSource)(DraggableMenuItem);  // eslint-disable-line new-cap
 
-export default DropTarget(ItemTypes.CARD, cardTarget, collectForTarget)(DraggableMenuItemConnected);
+export default DropTarget(ItemTypes.CARD, cardTarget, collectForTarget)(DraggableMenuItemConnected);  // eslint-disable-line new-cap

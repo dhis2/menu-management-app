@@ -3,12 +3,10 @@ import { closeSnackBar } from './actions';
 
 export const snackBarStore$ = Store.create();
 export const snackBarMessage$ = snackBarStore$
-    .map(({ message = '', action = 'ok', open = false, onActionTouchTap = closeSnackBar }) => {
-        return {
-            message,
-            action,
-            open: open,
-            onRequestClose: closeSnackBar,
-            onActionTouchTap: onActionTouchTap,
-        };
-    });
+    .map(({ message = '', action = 'ok', open = false, onActionTouchTap = closeSnackBar }) => ({
+        message,
+        action,
+        open,
+        onRequestClose: closeSnackBar,
+        onActionTouchTap,
+    }));

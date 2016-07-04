@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import DraggableMenuItem from './DraggableMenuItem';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-const HTML5DragDropContext = DragDropContext(HTML5Backend);
-
-const MenuItemList = HTML5DragDropContext(class MenuItemList extends Component {
+class MenuItemList extends Component {
     constructor(props, context) {
         super(props, context);
 
@@ -15,6 +13,10 @@ const MenuItemList = HTML5DragDropContext(class MenuItemList extends Component {
 
         this.moveItem = this.moveItem.bind(this);
         this.onListUpdated = this.onListUpdated.bind(this);
+    }
+
+    onListUpdated() {
+        this.props.onListUpdated(this.state.items, this.props.items);
     }
 
     moveItem(dragId, targetId) {
@@ -32,13 +34,9 @@ const MenuItemList = HTML5DragDropContext(class MenuItemList extends Component {
         });
     }
 
-    onListUpdated() {
-        this.props.onListUpdated(this.state.items, this.props.items);
-    }
-
     render() {
         return (
-            <div style={{ display: 'flex', flexWrap: 'wrap', maxWidth: '533px', }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', maxWidth: '533px' }}>
                 {this.state.items.map((item, index) => (
                     <DraggableMenuItem
                         key={item.name} {...item}
@@ -50,6 +48,12 @@ const MenuItemList = HTML5DragDropContext(class MenuItemList extends Component {
             </div>
         );
     }
-});
+}
 
-export default MenuItemList;
+MenuItemList.propTypes = {
+    items: PropTypes.array,
+    onListUpdated: PropTypes.func.isRequired,
+};
+
+const HTML5DragDropContext = DragDropContext(HTML5Backend);  // eslint-disable-line new-cap
+export default HTML5DragDropContext(MenuItemList); // eslint-disable-line new-cap
