@@ -8,8 +8,6 @@ import Translate from '../utils/Translate';
 import MenuManagement from '../menu-management/MenuManagement';
 import SnackBar from '../snack-bar/SnackBar';
 
-import Paper from 'material-ui/lib/paper';
-
 export default class App extends Component {
     getChildContext() {
         return {
@@ -22,11 +20,10 @@ export default class App extends Component {
     }
 
     render() {
-        const extraPaperStyle = {
+        const helpTextStyle = {
             flex: 1,
-            padding: '2rem',
-            margin: '1rem',
-            height: '6rem',
+            padding: '.5rem 1rem',
+            color: '#666',
         };
 
         // TODO: The only change here is the marginTop. D2-UI should support merging of the style object for
@@ -34,27 +31,41 @@ export default class App extends Component {
         const layoutStyle = {
             flex: 1,
             display: 'flex',
-            flexOrientation: 'row',
+            flexOrientation: 'column',
             marginTop: '4rem',
             marginLeft: '2rem',
             marginRight: '2rem',
+        };
+
+        const contentStyle = {
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+        };
+
+        const innerContentStyle = {
+            display: 'flex',
+            flexDirection: 'column',
         };
 
         return (
             <div className="app-wrapper">
                 <HeaderBar />
                 <SinglePanelLayout style={layoutStyle}>
-                    <div style={{ width: '100%' }}>
-                        <Heading><Translate>Your apps</Translate></Heading>
-                        <div style={{ display: 'flex' }}>
-                            <MenuManagement />
-                            <Paper style={extraPaperStyle}>
+                    <div style={contentStyle}>
+                        <div style={innerContentStyle}>
+                            <Heading style={{ width: '100%', paddingLeft: '1rem' }}><Translate>Your apps</Translate></Heading>
+                            <div style={helpTextStyle}>
                                 <Translate>Drag and drop the menu items to re-order them! 😊</Translate>
-                            </Paper>
+                            </div>
+                            <div style={{ display: 'flex' }}>
+                                <MenuManagement />
+                            </div>
                         </div>
-                        <SnackBar />
                     </div>
                 </SinglePanelLayout>
+                <SnackBar />
             </div>
         );
     }
