@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import log from 'loglevel';
 
 import HeaderBar from '../header/HeaderBar';
-import SinglePanelLayout from 'd2-ui/lib/layouts/SinglePanel.component';
+import SinglePanelLayout from 'd2-ui/lib/layout/SinglePanel.component';
 import Heading from 'd2-ui/lib/headings/Heading.component';
 import Translate from '../utils/Translate';
 import MenuManagement from '../menu-management/MenuManagement';
