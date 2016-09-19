@@ -3,13 +3,6 @@
 // DHIS_CONFIG is replaced with an empty object
 const dhisDevConfig = DHIS_CONFIG; // eslint-disable-line
 
-// This code will only be included in non-production builds of the app
-// It sets up the Authorization header to be used during CORS requests
-// This way we can develop using webpack without having to install the application into DHIS2.
-if (process.env.NODE_ENV !== 'production') {
-    jQuery.ajaxSetup({ headers: { Authorization: dhisDevConfig.authorization } }); // eslint-disable-line
-}
-
 import React from 'react';
 import { render } from 'react-dom';
 import log from 'loglevel';
