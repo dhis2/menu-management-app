@@ -29,7 +29,6 @@ function bypass(req, res, opt) {
 
 const webpackConfig = {
     context: __dirname,
-    contentBase: __dirname,
     entry: './src/app.js',
     devtool: 'source-map',
     output: {
@@ -43,9 +42,6 @@ const webpackConfig = {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel',
-                query: {
-                    presets: ['es2015', 'stage-0', 'react'],
-                },
             },
             {
                 test: /\.css$/,
@@ -88,13 +84,13 @@ if (!isDevBuild) {
             DHIS_CONFIG: JSON.stringify({}),
         }),
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false,
             },
             comments: false,
             beautify: true,
+            sourceMap: true,
         }),
     ];
 } else {

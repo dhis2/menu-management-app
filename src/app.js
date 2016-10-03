@@ -16,11 +16,18 @@ injectTapEventPlugin();
 
 import App from './app/App';
 import './app/app.scss';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 // Render the a LoadingMask to show the user the app is in loading
 // The consecutive render after we did our setup will replace this loading mask
 // with the rendered version of the application.
-render(<LoadingMask />, document.getElementById('app'));
+render(
+    <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <LoadingMask />
+    </MuiThemeProvider>,
+    document.getElementById('app')
+);
 
 /**
  * Renders the application into the page.
@@ -28,7 +35,11 @@ render(<LoadingMask />, document.getElementById('app'));
  * @param d2 Instance of the d2 library that is returned by the `init` function.
  */
 function startApp(d2) {
-    render(<App d2={d2} />, document.querySelector('#app'));
+    render(
+        <MuiThemeProvider muiTheme={getMuiTheme()}>
+            <App d2={d2} />
+        </MuiThemeProvider>,
+        document.querySelector('#app'));
 }
 
 

@@ -3,7 +3,7 @@ import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
 import { ItemTypes } from './constants';
 import HeaderMenuItem from 'd2-ui/lib/app-header/menus/HeaderMenuItem';
-import Paper from 'material-ui/lib/paper';
+import Paper from 'material-ui/Paper/Paper';
 
 /**
  * Implements the drag source contract.

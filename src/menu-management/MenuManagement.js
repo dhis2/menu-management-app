@@ -1,5 +1,5 @@
 import React from 'react';
-import Paper from 'material-ui/lib/paper';
+import Paper from 'material-ui/Paper/Paper';
 import withStateFrom from '../utils/withStateFrom';
 import Loading from '../utils/Loading';
 import MenuItemSorterComponent from './MenuItemSorter';

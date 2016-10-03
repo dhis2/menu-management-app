@@ -50,23 +50,23 @@ export default class App extends Component {
         };
 
         return (
-            <div className="app-wrapper">
-                <HeaderBar />
-                <SinglePanelLayout style={layoutStyle}>
-                    <div style={contentStyle}>
-                        <div style={innerContentStyle}>
-                            <Heading style={{ width: '100%', paddingLeft: '1rem' }}><Translate>Your apps</Translate></Heading>
-                            <div style={helpTextStyle}>
-                                <Translate>Drag and drop the menu items to re-order them! 😊</Translate>
-                            </div>
-                            <div style={{ display: 'flex' }}>
-                                <MenuManagement />
+                <div className="app-wrapper">
+                    <HeaderBar />
+                    <SinglePanelLayout style={layoutStyle}>
+                        <div style={contentStyle}>
+                            <div style={innerContentStyle}>
+                                <Heading style={{ width: '100%', paddingLeft: '1rem' }}><Translate>Your apps</Translate></Heading>
+                                <div style={helpTextStyle}>
+                                    <Translate>Drag and drop the menu items to re-order them! 😊</Translate>
+                                </div>
+                                <div style={{ display: 'flex' }}>
+                                    <MenuManagement />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </SinglePanelLayout>
-                <SnackBar />
-            </div>
+                    </SinglePanelLayout>
+                    <SnackBar />
+                </div>
         );
     }
 }
