@@ -41,15 +41,15 @@ const webpackConfig = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'babel',
+                loader: 'babel-loader',
             },
             {
                 test: /\.css$/,
-                loader: 'style!css',
+                loader: 'style-loader!css-loader',
             },
             {
                 test: /\.scss$/,
-                loader: 'style!css!sass',
+                loader: 'style-loader!css-loader!sass-loader',
             },
         ],
     },
@@ -63,15 +63,16 @@ const webpackConfig = {
         progress: true,
         colors: true,
         port: 8081,
+        host: '0.0.0.0',
         inline: true,
         compress: true,
         proxy: [
             { path: '/api/*', target: dhisConfig.baseUrl, bypass },
             { path: '/dhis-web-commons/**', target: dhisConfig.baseUrl, bypass, },
             { path: '/icons/*', target: dhisConfig.baseUrl, bypass },
-            { path: '/i18n/*', target: 'http://localhost:8081/src', bypass },
-            { path: '/css/*', target: 'http://localhost:8081/build', bypass },
-            { path: '/polyfill.min.js', target: 'http://localhost:8081/node_modules/babel-polyfill/dist', bypass },
+            { path: '/i18n/*', target: 'http://0.0.0.0:8081/src', bypass },
+            { path: '/css/*', target: 'http://0.0.0.0:8081/build', bypass },
+            { path: '/polyfill.min.js', target: 'http://0.0.0.0:8081/node_modules/babel-polyfill/dist', bypass },
         ],
     },
 };
