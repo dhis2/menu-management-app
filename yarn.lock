@@ -1593,9 +1593,9 @@ d2-manifest@^1.0.0:
     minimist "^1.1.0"
     readline-sync "^1.4.1"
 
-d2-ui@25.4.13:
-  version "25.4.13"
-  resolved "https://registry.yarnpkg.com/d2-ui/-/d2-ui-25.4.13.tgz#b3770956ff995fb596a8f6ee8882519d0e645640"
+d2-ui@25.4.14:
+  version "25.4.14"
+  resolved "https://registry.yarnpkg.com/d2-ui/-/d2-ui-25.4.14.tgz#0bc4387279019439f1aa37e10892049253584d69"
   dependencies:
     d2-utilizr "^0.2.4"
     d3-color "^0.4.2"
