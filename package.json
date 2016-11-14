@@ -22,6 +22,7 @@
   "author": "Mark Polak",
   "license": "BSD-3-Clause",
   "dependencies": {
+    "d2-ui": "25",
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",
     "recompose": "^0.20.2"
