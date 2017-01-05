@@ -1,6 +1,6 @@
 {
   "name": "menu-management-app",
-  "version": "25.0.4",
+  "version": "25.0.5",
   "description": "Skeleton app for a DHIS2 web app",
   "main": "src/index.html",
   "scripts": {
