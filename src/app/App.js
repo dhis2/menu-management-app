@@ -55,9 +55,9 @@ export default class App extends Component {
                     <SinglePanelLayout style={layoutStyle}>
                         <div style={contentStyle}>
                             <div style={innerContentStyle}>
-                                <Heading style={{ width: '100%', paddingLeft: '1rem' }}><Translate>Your apps</Translate></Heading>
+                                <Heading style={{ width: '100%', paddingLeft: '1rem' }}><Translate>Your_apps</Translate></Heading>
                                 <div style={helpTextStyle}>
-                                    <Translate>Drag and drop the menu items to re-order them! 😊</Translate>
+                                    <Translate>Drag_and_drop</Translate>
                                 </div>
                                 <div style={{ display: 'flex' }}>
                                     <MenuManagement />
