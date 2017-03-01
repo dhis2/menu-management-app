@@ -43,19 +43,22 @@ function startApp(d2) {
 }
 
 
-Promise.all([getManifest('./manifest.webapp'), getUserSettings()])
-    .then(([manifest, { keyUiLocale }]) => {
+getManifest('./manifest.webapp')
+    .then((manifest) => {
         const baseUrl = process.env.NODE_ENV === 'production' ? manifest.getBaseUrl() : dhisDevConfig.baseUrl;
         config.baseUrl = `${baseUrl}/api`;
 
         log.info(`Loading: ${manifest.name} v${manifest.version}`);
         log.info(`Built ${manifest.manifest_generated_at}`);
 
-        // Get userlocale and load the tanslations
-        if (keyUiLocale && keyUiLocale !== 'en') {
-            config.i18n.sources.add(`./i18n/menu-management-${keyUiLocale}.properties`);
-        }
-        config.i18n.sources.add('./i18n/menu-management.properties');
+        return getUserSettings()
+            .then(({ keyUiLocale }) => {
+                // Get userlocale and load the tanslations
+                if (keyUiLocale && keyUiLocale !== 'en') {
+                    config.i18n.sources.add(`./i18n/menu-management-${keyUiLocale}.properties`);
+                }
+                config.i18n.sources.add('./i18n/menu-management.properties');
+            });
     })
     .then(init)
     .then(startApp)
