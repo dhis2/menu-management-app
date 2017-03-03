@@ -52,11 +52,16 @@ getManifest('./manifest.webapp')
         log.info(`Built ${manifest.manifest_generated_at}`);
 
         return getUserSettings()
+            // Load translations for the users locale with english as the fallback language
             .then(({ keyUiLocale }) => {
                 // Get userlocale and load the tanslations
                 if (keyUiLocale && keyUiLocale !== 'en') {
                     config.i18n.sources.add(`./i18n/menu-management-${keyUiLocale}.properties`);
                 }
+                config.i18n.sources.add('./i18n/menu-management.properties');
+            })
+            // Fallback to english
+            .catch(() => {
                 config.i18n.sources.add('./i18n/menu-management.properties');
             });
     })
