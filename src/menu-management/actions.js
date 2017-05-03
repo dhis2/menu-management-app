@@ -41,10 +41,10 @@ export function saveListWhenChanged(newList, oldList) {
         .take(1)
         .flatMap(({ items: menuItems }) => saveMenuItemOrder(menuItems))
         .subscribe(
-            () => getInstance().then((d2) => setSnackMessage(d2.i18n.getTranslation('Menu items saved!'))),
+            () => getInstance().then((d2) => setSnackMessage(d2.i18n.getTranslation('Menu_items_saved'))),
             (e) => {
                 log.error(e);
-                getInstance().then((d2) => setSnackMessage(d2.i18n.getTranslation('Failed to save'), 'dismiss'));
+                getInstance().then((d2) => setSnackMessage(d2.i18n.getTranslation('Failed_to_save'), 'dismiss'));
             }
         );
 }

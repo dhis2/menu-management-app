@@ -6,7 +6,7 @@ const dhisDevConfig = DHIS_CONFIG; // eslint-disable-line
 import React from 'react';
 import { render } from 'react-dom';
 import log from 'loglevel';
-import { init, config, getManifest } from 'd2/lib/d2';
+import { init, config, getManifest, getUserSettings } from 'd2/lib/d2';
 
 import LoadingMask from 'd2-ui/lib/loading-mask/LoadingMask.component';
 
@@ -43,19 +43,27 @@ function startApp(d2) {
 }
 
 
-// Load the application manifest to be able to determine the location of the Api
-// After we have the location of the api, we can set it onto the d2.config object
-// and initialise the library. We use the initialised library to pass it into the app
-// to make it known on the context of the app, so the sub-components (primarily the d2-ui components)
-// can use it to access the api, translations etc.
 getManifest('./manifest.webapp')
-    .then(manifest => {
+    .then((manifest) => {
         const baseUrl = process.env.NODE_ENV === 'production' ? manifest.getBaseUrl() : dhisDevConfig.baseUrl;
         config.baseUrl = `${baseUrl}/api`;
-        config.i18n.sources.add('./i18n/menu-management.properties');
 
         log.info(`Loading: ${manifest.name} v${manifest.version}`);
         log.info(`Built ${manifest.manifest_generated_at}`);
+
+        return getUserSettings()
+            // Load translations for the users locale with english as the fallback language
+            .then(({ keyUiLocale }) => {
+                // Get userlocale and load the tanslations
+                if (keyUiLocale && keyUiLocale !== 'en') {
+                    config.i18n.sources.add(`./i18n/menu-management-${keyUiLocale}.properties`);
+                }
+                config.i18n.sources.add('./i18n/menu-management.properties');
+            })
+            // Fallback to english
+            .catch(() => {
+                config.i18n.sources.add('./i18n/menu-management.properties');
+            });
     })
     .then(init)
     .then(startApp)

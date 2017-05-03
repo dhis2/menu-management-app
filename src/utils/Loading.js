@@ -6,7 +6,7 @@ export default function Loading() {
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
             <CircularProgress size={0.5} />
-            <Translate>Loading...</Translate>
+            <Translate>Loading</Translate>
         </div>
     );
 }
