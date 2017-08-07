@@ -3,34 +3,33 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-01 06:42-0400\n"
-"PO-Revision-Date: 2017-03-07 04:50+0000\n"
-"Last-Translator: huyen_hispvn <ltth.hsph@gmail.com>\n"
+"POT-Creation-Date: 2017-03-01 02:56-0400\n"
+"PO-Revision-Date: 2017-04-26 16:07+0000\n"
+"Last-Translator: baktashsalehi <baktash.salehi@thepalladiumgroup.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: vi\n"
+"Language: prs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.8\n"
-"X-POOTLE-MTIME: 1488862206.000000\n"
+"X-POOTLE-MTIME: 1493222837.000000\n"
 
 #: Your_apps
 msgid "Your apps"
-msgstr "Ứng dụng của bạn"
+msgstr "اپلیکیشن های شما"
 
 #: Loading
 msgid "Loading..."
-msgstr "Đang tải..."
+msgstr "در حال بار کردن…"
 
 #: Menu_items_saved
 msgid "Menu items saved!"
-msgstr "Danh sách ứng dụng đã được lưu"
+msgstr "موارد مینو ثبت گردیده!"
 
 #: Failed_to_save
 msgid "Failed to save"
-msgstr "Không thể lưu"
+msgstr "ثبت کردن به ناکامی انچامید"
 
 #: Drag_and_drop
 msgid "Drag and drop the menu items to re-order them!"
-msgstr "Kéo và thả danh sách ứng dụng để sắp xếp lại"
+msgstr "اظافه کردن مینو برای تنظیم ان!"
