@@ -1,4 +1,4 @@
-import { Observable } from 'rx';
+import { Observable } from 'rxjs';
 import { getInstance } from 'd2/lib/d2';
 import { menuItemStore$ } from './store';
 import { setSnackMessage } from '../snack-bar/actions';
@@ -13,7 +13,7 @@ import log from 'loglevel';
  * The Observable will emit on success or error when an error was thrown.
  */
 export function saveMenuItemOrder(menuItems) {
-    return Observable.just(menuItems)
+    return Observable.of(menuItems)
         .map(items => items.map(item => item.name))
         .combineLatest(Observable.fromPromise(getInstance()))
         .map(([items, d2]) => {

@@ -61,7 +61,6 @@ const webpackConfig = {
     },
     devServer: {
         progress: true,
-        colors: true,
         port: 8081,
         host: '0.0.0.0',
         inline: true,
