@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react';
-import DraggableMenuItem from './DraggableMenuItem';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import DraggableMenuItem from './DraggableMenuItem';
 
 class MenuItemList extends Component {
     constructor(props, context) {
@@ -39,7 +40,8 @@ class MenuItemList extends Component {
             <div style={{ display: 'flex', flexWrap: 'wrap', maxWidth: '533px' }}>
                 {this.state.items.map((item, index) => (
                     <DraggableMenuItem
-                        key={item.name} {...item}
+                        key={item.name}
+                        {...item}
                         index={index}
                         moveItem={this.moveItem}
                         onListUpdated={this.onListUpdated}
@@ -51,7 +53,7 @@ class MenuItemList extends Component {
 }
 
 MenuItemList.propTypes = {
-    items: PropTypes.array,
+    items: PropTypes.array.isRequired,
     onListUpdated: PropTypes.func.isRequired,
 };
 

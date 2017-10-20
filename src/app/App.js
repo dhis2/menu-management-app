@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import log from 'loglevel';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import HeaderBar from '../header/HeaderBar';
 import SinglePanelLayout from 'd2-ui/lib/layout/SinglePanel.component';
 import Heading from 'd2-ui/lib/headings/Heading.component';
+import HeaderBar from '../header/HeaderBar';
 import Translate from '../utils/Translate';
 import MenuManagement from '../menu-management/MenuManagement';
 import SnackBar from '../snack-bar/SnackBar';
@@ -13,10 +13,6 @@ export default class App extends Component {
         return {
             d2: this.props.d2,
         };
-    }
-
-    _sidebarItemClicked(sideBarItemKey) {
-        log.info('Clicked on ', sideBarItemKey);
     }
 
     render() {
@@ -50,36 +46,33 @@ export default class App extends Component {
         };
 
         return (
-                <div className="app-wrapper">
-                    <HeaderBar />
-                    <SinglePanelLayout style={layoutStyle}>
-                        <div style={contentStyle}>
-                            <div style={innerContentStyle}>
-                                <Heading style={{ width: '100%', paddingLeft: '1rem' }}><Translate>Your_apps</Translate></Heading>
-                                <div style={helpTextStyle}>
-                                    <Translate>Drag_and_drop</Translate>
-                                </div>
-                                <div style={{ display: 'flex' }}>
-                                    <MenuManagement />
-                                </div>
+            <div className="app-wrapper">
+                <HeaderBar />
+                <SinglePanelLayout style={layoutStyle}>
+                    <div style={contentStyle}>
+                        <div style={innerContentStyle}>
+                            <Heading style={{ width: '100%', paddingLeft: '1rem' }}>
+                                <Translate>Your_apps</Translate>
+                            </Heading>
+                            <div style={helpTextStyle}>
+                                <Translate>Drag_and_drop</Translate>
+                            </div>
+                            <div style={{ display: 'flex' }}>
+                                <MenuManagement />
                             </div>
                         </div>
-                    </SinglePanelLayout>
-                    <SnackBar />
-                </div>
+                    </div>
+                </SinglePanelLayout>
+                <SnackBar />
+            </div>
         );
     }
 }
 
 App.propTypes = {
-    name: PropTypes.string,
-    d2: PropTypes.object,
+    d2: PropTypes.object.isRequired,
 };
 
 App.childContextTypes = {
     d2: PropTypes.object,
-};
-
-App.defaultProps = {
-    name: 'John',
 };

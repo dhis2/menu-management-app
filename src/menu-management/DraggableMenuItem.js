@@ -1,9 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
-import { ItemTypes } from './constants';
-import HeaderMenuItem from 'd2-ui/lib/app-header/menus/HeaderMenuItem';
 import Paper from 'material-ui/Paper/Paper';
+import HeaderMenuItem from 'd2-ui/lib/app-header/menus/HeaderMenuItem';
+
+import ItemTypes from './itemTypes';
 
 /**
  * Implements the drag source contract.
@@ -31,7 +33,7 @@ const cardTarget = {
         }
 
         // Determine rectangle on screen
-        const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+        const hoverBoundingRect = findDOMNode(component).getBoundingClientRect(); // eslint-disable-line
 
         // Get vertical middle
         const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
@@ -61,7 +63,7 @@ const cardTarget = {
             return;
         }
 
-         // Dragging downwards or Dragging right
+        // Dragging downwards or Dragging right
         if (isDraggingDown && isDraggingRight) {
             return;
         }
@@ -95,25 +97,44 @@ class DraggableMenuItem extends Component {
             connectDropTarget,
         } = this.props;
 
+        const itemStyle = {
+            visibility: isDragging ? 'hidden' : 'visible',
+            padding: '3px',
+            border: 'none',
+            background: 'none',
+        };
+
+        const setHovering = () => {
+            this.setState({ hover: true });
+        };
+        const unsetHovering = () => {
+            this.setState({ hover: false });
+        };
+
         const MenuItem = (
-            <div
-                style={{ visibility: isDragging ? 'hidden' : 'visible', padding: '3px' }}
-                onMouseDown={() => this.setState({ hover: true })}
-                onMouseOver={() => this.setState({ hover: false })}
-            >
+            <button style={itemStyle} onMouseDown={setHovering} onMouseOver={unsetHovering}>
                 <Paper zDepth={this.state.hover ? 2 : 0}>
                     <HeaderMenuItem {...this.props} />
                 </Paper>
-            </div>
+            </button>
         );
 
         return connectDropTarget(connectDragSource(MenuItem));
     }
 }
+
 DraggableMenuItem.propTypes = {
     isDragging: PropTypes.bool,
     connectDragSource: PropTypes.func,
     connectDropTarget: PropTypes.func,
+};
+
+DraggableMenuItem.defaultProps = {
+    isDragging: false,
+    connectDragSource: () => {
+    },
+    connectDropTarget: () => {
+    },
 };
 
 function collectForTarget(connect) {

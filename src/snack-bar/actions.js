@@ -5,7 +5,7 @@ export function closeSnackBar() {
         .setState(Object.assign(
             {},
             snackBarStore$.getState(),
-            { open: false }
+            { open: false },
         ));
 }
 

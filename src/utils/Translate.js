@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function Translate(props, context) {
     return <span>{context.d2.i18n.getTranslation(props.children)}</span>;
@@ -9,5 +10,5 @@ Translate.contextTypes = {
 };
 
 Translate.propTypes = {
-    children: PropTypes.string,
+    children: PropTypes.string.isRequired,
 };
