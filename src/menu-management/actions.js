@@ -1,8 +1,8 @@
-import { Observable } from 'rx';
+import { Observable } from 'rxjs';
+import log from 'loglevel';
 import { getInstance } from 'd2/lib/d2';
 import { menuItemStore$ } from './store';
 import { setSnackMessage } from '../snack-bar/actions';
-import log from 'loglevel';
 
 /**
  * Saves the order of the passed menuItems to the server for the current user. This
@@ -13,7 +13,7 @@ import log from 'loglevel';
  * The Observable will emit on success or error when an error was thrown.
  */
 export function saveMenuItemOrder(menuItems) {
-    return Observable.just(menuItems)
+    return Observable.of(menuItems)
         .map(items => items.map(item => item.name))
         .combineLatest(Observable.fromPromise(getInstance()))
         .map(([items, d2]) => {
@@ -41,10 +41,10 @@ export function saveListWhenChanged(newList, oldList) {
         .take(1)
         .flatMap(({ items: menuItems }) => saveMenuItemOrder(menuItems))
         .subscribe(
-            () => getInstance().then((d2) => setSnackMessage(d2.i18n.getTranslation('Menu_items_saved'))),
+            () => getInstance().then(d2 => setSnackMessage(d2.i18n.getTranslation('Menu_items_saved'))),
             (e) => {
                 log.error(e);
-                getInstance().then((d2) => setSnackMessage(d2.i18n.getTranslation('Failed_to_save'), 'dismiss'));
-            }
+                getInstance().then(d2 => setSnackMessage(d2.i18n.getTranslation('Failed_to_save'), 'dismiss'));
+            },
         );
 }

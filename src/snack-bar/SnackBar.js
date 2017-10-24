@@ -11,4 +11,4 @@ function SnackBarContainer(props) {
     );
 }
 
-export default withStateFrom(snackBarMessage$, SnackBarContainer, () => (<span></span>));
+export default withStateFrom(snackBarMessage$, SnackBarContainer, () => (<span />));
