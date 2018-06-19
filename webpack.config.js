@@ -61,18 +61,13 @@ const webpackConfig = {
     },
     devServer: {
         progress: true,
-        colors: true,
         port: 8081,
-        host: '0.0.0.0',
         inline: true,
         compress: true,
         proxy: [
-            { path: '/api/*', target: dhisConfig.baseUrl, bypass },
-            { path: '/dhis-web-commons/**', target: dhisConfig.baseUrl, bypass, },
-            { path: '/icons/*', target: dhisConfig.baseUrl, bypass },
-            { path: '/i18n/*', target: 'http://0.0.0.0:8081/src', bypass },
-            { path: '/css/*', target: 'http://0.0.0.0:8081/build', bypass },
-            { path: '/polyfill.min.js', target: 'http://0.0.0.0:8081/node_modules/babel-polyfill/dist', bypass },
+            { path: '/polyfill.min.js', target: 'http://localhost:8081/node_modules/babel-polyfill/dist', bypass },
+            { path: ['/dhis-web-commons/'], target: dhisConfig.baseUrl, bypass },
+            { path: '/i18n/', target: 'http://localhost:8081/src', bypass },
         ],
     },
 };
@@ -84,7 +79,6 @@ if (!isDevBuild) {
             'process.env.NODE_ENV': '"production"',
             DHIS_CONFIG: JSON.stringify({}),
         }),
-        new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false,
@@ -97,7 +91,7 @@ if (!isDevBuild) {
 } else {
     webpackConfig.plugins = [
         new webpack.DefinePlugin({
-            DHIS_CONFIG: JSON.stringify(dhisConfig)
+            DHIS_CONFIG: JSON.stringify(dhisConfig),
         }),
     ];
 }

@@ -28,7 +28,7 @@ export default function withStateFrom(stateSource$, BaseComponent, LoadingCompon
                         this.valueEmitted = true;
                         this.setState(state);
                     },
-                    (error) => log.error(error)
+                    error => log.error(error),
                 );
         }
 

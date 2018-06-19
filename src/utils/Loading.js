@@ -1,6 +1,6 @@
 import React from 'react';
-import Translate from '../utils/Translate';
 import CircularProgress from 'material-ui/CircularProgress/CircularProgress';
+import Translate from '../utils/Translate';
 
 export default function Loading() {
     return (
