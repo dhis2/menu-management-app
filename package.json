@@ -9,8 +9,7 @@
     "postbuild": "cp -r package.json index.html icon.png node_modules/babel-polyfill/dist/polyfill.min.js manifest.webapp src/i18n build/",
     "lint": "eslint --fix src",
     "prestart": "d2-manifest package.json manifest.webapp",
-    "start": "webpack-dev-server",
-    "deploy": "deploy-build"
+    "start": "webpack-dev-server"
   },
   "keywords": [
     "DHIS2",
@@ -20,7 +19,6 @@
   "license": "BSD-3-Clause",
   "dependencies": {},
   "devDependencies": {
-    "@dhis2/deploy-build": "^1.0.4",
     "babel-core": "^6.7.2",
     "babel-loader": "^7.1.2",
     "babel-polyfill": "^6.7.2",
