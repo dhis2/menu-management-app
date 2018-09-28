@@ -6,9 +6,8 @@
   "scripts": {
     "prebuild": "rm -rf build && mkdir build && d2-manifest package.json manifest.webapp",
     "build": "webpack -p --progress",
-    "postbuild": "cp -r index.html icon.png node_modules/babel-polyfill/dist/polyfill.min.js manifest.webapp src/i18n build/",
+    "postbuild": "cp -r package.json index.html icon.png node_modules/babel-polyfill/dist/polyfill.min.js manifest.webapp src/i18n build/",
     "lint": "eslint --fix src",
-    "validate": "npm ls --depth 0",
     "prestart": "d2-manifest package.json manifest.webapp",
     "start": "webpack-dev-server"
   },
