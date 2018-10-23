@@ -1,6 +1,6 @@
 {
   "name": "menu-management-app",
-  "version": "28.0.1",
+  "version": "29.0.0",
   "description": "Menu management app for DHIS 2",
   "main": "src/index.html",
   "scripts": {
