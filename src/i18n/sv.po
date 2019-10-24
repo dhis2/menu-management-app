@@ -1,19 +1,21 @@
-#. extracted from menu-management.properties
+# Translators:
+# Viktor Varland <viktor@dhis2.org>, 2019
+# 
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-01 02:56-0400\n"
-"PO-Revision-Date: 2016-12-01 11:46+0000\n"
-"Last-Translator: Jason Pickering <jason.p.pickering@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: sv\n"
+"PO-Revision-Date: 2019-08-05 12:09+0000\n"
+"Last-Translator: Viktor Varland <viktor@dhis2.org>, 2019\n"
+"Language-Team: Swedish (https://www.transifex.com/hisp-uio/teams/100509/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.8\n"
-"X-POOTLE-MTIME: 1480592802.000000\n"
+"X-Generator: Translate Toolkit 2.0.0b3\n"
 
 #: Your_apps
 msgid "Your apps"
