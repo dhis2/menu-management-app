@@ -20,7 +20,7 @@ msgstr ""
 
 #: Your_apps
 msgid "Your apps"
-msgstr ""
+msgstr "你的应用"
 
 #: Loading
 msgid "Loading..."
@@ -28,7 +28,7 @@ msgstr "载入....."
 
 #: Menu_items_saved
 msgid "Menu items saved!"
-msgstr ""
+msgstr "菜单项已经保存"
 
 #: Failed_to_save
 msgid "Failed to save"
@@ -36,4 +36,4 @@ msgstr "保存失败"
 
 #: Drag_and_drop
 msgid "Drag and drop the menu items to re-order them!"
-msgstr ""
+msgstr "拖到菜单项重新排序"
