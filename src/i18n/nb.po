@@ -1,6 +1,5 @@
 # Translators:
-# Viktor Varland <viktor@dhis2.org>, 2020
-# 晓东 林 <13981924470@126.com>, 2020
+# Karoline Tufte Lien <karoline@dhis2.org>, 2020
 # 
 #, fuzzy
 msgid ""
@@ -9,31 +8,31 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-01 02:56-0400\n"
 "PO-Revision-Date: 2020-02-28 15:07+0000\n"
-"Last-Translator: 晓东 林 <13981924470@126.com>, 2020\n"
-"Language-Team: Chinese (https://www.transifex.com/hisp-uio/teams/100509/zh/)\n"
+"Last-Translator: Karoline Tufte Lien <karoline@dhis2.org>, 2020\n"
+"Language-Team: Norwegian Bokmål (https://www.transifex.com/hisp-uio/teams/100509/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: nb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Translate Toolkit 2.0.0b3\n"
 
 #: Your_apps
 msgid "Your apps"
-msgstr "你的应用"
+msgstr "Dine applikasjoner"
 
 #: Loading
 msgid "Loading..."
-msgstr "载入....."
+msgstr "Laster..."
 
 #: Menu_items_saved
 msgid "Menu items saved!"
-msgstr "菜单项已经保存"
+msgstr "Menyelementer lagret!"
 
 #: Failed_to_save
 msgid "Failed to save"
-msgstr "保存失败"
+msgstr "Kunne ikke lagre"
 
 #: Drag_and_drop
 msgid "Drag and drop the menu items to re-order them!"
-msgstr "拖到菜单项重新排序"
+msgstr "Dra og slipp menypunktene for å endre rekkefølge"
