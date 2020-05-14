@@ -37,4 +37,4 @@ msgstr "تعذر الحفظ"
 
 #: Drag_and_drop
 msgid "Drag and drop the menu items to re-order them!"
-msgstr "اسحب وأفلت عناصر القائمة لإعادة ترتيبها!"
+msgstr "قم بالسحب والإفلات لعناصر القائمة لإعادة ترتيبها!"
