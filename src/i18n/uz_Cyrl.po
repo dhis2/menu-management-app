@@ -20,7 +20,7 @@ msgstr ""
 
 #: Your_apps
 msgid "Your apps"
-msgstr ""
+msgstr "Сизнинг иловаларингиз"
 
 #: Loading
 msgid "Loading..."
@@ -28,12 +28,12 @@ msgstr "Юкланмоқда..."
 
 #: Menu_items_saved
 msgid "Menu items saved!"
-msgstr ""
+msgstr "Меню элементлари сақланди!"
 
 #: Failed_to_save
 msgid "Failed to save"
-msgstr ""
+msgstr "Сақлаш амалга ошмади"
 
 #: Drag_and_drop
 msgid "Drag and drop the menu items to re-order them!"
-msgstr ""
+msgstr "Меню элементлари жойини ўзгартириш учун уларни силжитинг!"
