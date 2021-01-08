@@ -1,14 +1,5 @@
-# Jetbrains files
-.idea
-*.iml
-
-# Project folders/dependencies
+# DHIS2 Platform
 node_modules
+.d2
+src/locales
 build
-target
-coverage
-manifest.webapp
-
-# Misc files
-npm-debug.log
-
