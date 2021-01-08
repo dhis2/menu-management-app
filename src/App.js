@@ -2,7 +2,7 @@ import { spacers } from '@dhis2/ui-constants'
 import React from 'react'
 import classes from './App.module.css'
 import i18n from './locales'
-import MenuManagement from './MenuManagement'
+import MenuManagement from './components/MenuManagement'
 
 const App = () => (
     <div className={classes.container}>
