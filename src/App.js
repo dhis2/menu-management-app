@@ -18,8 +18,12 @@ const App = () => (
             .title {
                 margin-top: 0;
                 margin-bottom: ${spacers.dp8};
+                font-size: 1.5rem;
             }
             .description {
+                margin-top: 0;
+                margin-bottom: ${spacers.dp16};
+                color: rgba(0, 0, 0, 0.87);
             }
         `}</style>
     </div>
