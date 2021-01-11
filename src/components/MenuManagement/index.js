@@ -24,7 +24,7 @@ const mutation = {
         const length = Math.max(...Object.keys(appsOrder)) + 1
         appsOrder.length = length
         return [].slice.call(appsOrder)
-    }
+    },
 }
 
 const moveApp = (apps, app, insertBefore) => {
@@ -40,14 +40,21 @@ const MenuManagement = ({ apps, initialAppsOrder }) => {
     const [appsOrder, setAppsOrder] = useState(initialAppsOrder)
     const { showSuccessAlert, showCriticalAlert } = useAlerts()
     const [mutate] = useDataMutation(mutation, {
-        onComplete() { showSuccessAlert(i18n.t("Updated order of apps.")) },
-        onError(error) { showCriticalAlert(error.message) }
+        onComplete() {
+            showSuccessAlert(i18n.t('Updated order of apps.'))
+        },
+        onError(error) {
+            showCriticalAlert(error.message)
+        },
     })
-    const handleAppMove = useCallback((app, insertBefore) => {
-        const newAppsOrder = moveApp(appsOrder, app, insertBefore)
-        mutate(newAppsOrder)
-        setAppsOrder(newAppsOrder)
-    }, [appsOrder])
+    const handleAppMove = useCallback(
+        (app, insertBefore) => {
+            const newAppsOrder = moveApp(appsOrder, app, insertBefore)
+            mutate(newAppsOrder)
+            setAppsOrder(newAppsOrder)
+        },
+        [appsOrder]
+    )
 
     return (
         <Card>
@@ -57,7 +64,8 @@ const MenuManagement = ({ apps, initialAppsOrder }) => {
                         <DraggableApp
                             key={appName}
                             onMove={handleAppMove}
-                            app={apps[appName]} />
+                            app={apps[appName]}
+                        />
                     ))}
                 </div>
             </DndProvider>
@@ -110,12 +118,13 @@ const MenuManagementWrapper = () => {
     }
 
     const appsByName = {}
-    apps.forEach((app) => appsByName[app.name] = app)
+    apps.forEach(app => (appsByName[app.name] = app))
 
     return (
         <MenuManagement
             apps={appsByName}
-            initialAppsOrder={apps.map(({ name }) => name)} />
+            initialAppsOrder={apps.map(({ name }) => name)}
+        />
     )
 }
 

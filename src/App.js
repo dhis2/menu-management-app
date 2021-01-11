@@ -1,9 +1,9 @@
 import { spacers } from '@dhis2/ui-constants'
 import React from 'react'
 import classes from './App.module.css'
-import i18n from './locales'
-import MenuManagement from './components/MenuManagement'
 import AlertProvider from './components/AlertProvider'
+import MenuManagement from './components/MenuManagement'
+import i18n from './locales'
 
 const App = () => (
     <AlertProvider>

@@ -1,5 +1,5 @@
-import React, { useState, useContext, createContext } from 'react'
 import { AlertBar, AlertStack } from '@dhis2/ui'
+import React, { useState, useContext, createContext } from 'react'
 
 const AlertContext = createContext()
 
@@ -7,11 +7,11 @@ export const useAlerts = () => useContext(AlertContext)
 
 const AlertProvider = ({ children }) => {
     const [alert, setAlert] = useState(null)
-    const showSuccessAlert = (message) => {
-        setAlert({ message, type: "success", timestamp: Date.now() })
+    const showSuccessAlert = message => {
+        setAlert({ message, type: 'success', timestamp: Date.now() })
     }
-    const showCriticalAlert = (message) => {
-        setAlert({ message, type: "critical", timestamp: Date.now() })
+    const showCriticalAlert = message => {
+        setAlert({ message, type: 'critical', timestamp: Date.now() })
     }
 
     return (
@@ -19,11 +19,16 @@ const AlertProvider = ({ children }) => {
             {children}
 
             <AlertStack>
-                {alert ? [
-                    <AlertBar key={alert.timestamp} {...{ [alert.type]: true }}>
-                        {alert.message}
-                    </AlertBar>
-                ] : null}
+                {alert
+                    ? [
+                          <AlertBar
+                              key={alert.timestamp}
+                              {...{ [alert.type]: true }}
+                          >
+                              {alert.message}
+                          </AlertBar>,
+                      ]
+                    : null}
             </AlertStack>
         </AlertContext.Provider>
     )
