@@ -1,5 +1,6 @@
 import { join as joinPath } from 'path'
 import { useDataQuery, useDataMutation, useConfig } from '@dhis2/app-runtime'
+import { PropTypes } from '@dhis2/prop-types'
 import { NoticeBox, CenteredContent, CircularLoader, Card } from '@dhis2/ui'
 import React, { useMemo, useState, useCallback } from 'react'
 import { DndProvider } from 'react-dnd'
@@ -80,6 +81,11 @@ const MenuManagement = ({ apps, initialAppsOrder }) => {
             `}</style>
         </Card>
     )
+}
+
+MenuManagement.propTypes = {
+    apps: PropTypes.object.isRequired,
+    initialAppsOrder: PropTypes.array.isRequired,
 }
 
 const MenuManagementWrapper = () => {

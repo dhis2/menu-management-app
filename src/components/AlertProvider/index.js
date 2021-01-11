@@ -1,3 +1,4 @@
+import { PropTypes } from '@dhis2/prop-types'
 import { AlertBar, AlertStack } from '@dhis2/ui'
 import React, { useState, useContext, createContext } from 'react'
 
@@ -32,6 +33,10 @@ const AlertProvider = ({ children }) => {
             </AlertStack>
         </AlertContext.Provider>
     )
+}
+
+AlertProvider.propTypes = {
+    children: PropTypes.any.isRequired,
 }
 
 export default AlertProvider

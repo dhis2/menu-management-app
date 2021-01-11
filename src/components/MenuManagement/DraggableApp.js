@@ -1,3 +1,4 @@
+import { PropTypes } from '@dhis2/prop-types'
 import { theme } from '@dhis2/ui-constants'
 import React, { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
@@ -50,6 +51,12 @@ const App = ({ defaultAction, icon, displayName }) => (
     </div>
 )
 
+App.propTypes = {
+    defaultAction: PropTypes.string.isRequired,
+    displayName: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+}
+
 const DND_ITEM_TYPE = 'APP'
 
 const DraggableApp = ({ app, onMove }) => {
@@ -76,6 +83,11 @@ const DraggableApp = ({ app, onMove }) => {
             <App {...app} />
         </div>
     )
+}
+
+DraggableApp.propTypes = {
+    app: PropTypes.any.isRequired,
+    onMove: PropTypes.func.isRequired,
 }
 
 export default DraggableApp
