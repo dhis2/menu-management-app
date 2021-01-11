@@ -5,6 +5,7 @@ import React, { useMemo, useState, useCallback } from 'react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import i18n from '../../locales'
+import { useAlerts } from '../AlertProvider'
 import DraggableApp from './DraggableApp'
 
 const query = {
@@ -37,9 +38,10 @@ const moveApp = (apps, app, insertBefore) => {
 
 const MenuManagement = ({ apps, initialAppsOrder }) => {
     const [appsOrder, setAppsOrder] = useState(initialAppsOrder)
+    const { showSuccessAlert, showCriticalAlert } = useAlerts()
     const [mutate] = useDataMutation(mutation, {
-        onComplete() { console.log("Updated order of apps") },
-        onError(error) { console.log("Error updating app order:", error) }
+        onComplete() { showSuccessAlert(i18n.t("Updated order of apps.")) },
+        onError(error) { showCriticalAlert(error.message) }
     })
     const handleAppMove = useCallback((app, insertBefore) => {
         const newAppsOrder = moveApp(appsOrder, app, insertBefore)
