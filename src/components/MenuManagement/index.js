@@ -5,7 +5,7 @@ import React, { useMemo, useState, useCallback } from 'react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import i18n from '../../locales'
-import App from './App'
+import DraggableApp from './DraggableApp'
 
 const query = {
     apps: {
@@ -26,19 +26,23 @@ const mutation = {
     }
 }
 
+const moveApp = (apps, app, insertBefore) => {
+    const newApps = [...apps]
+    const appIndex = newApps.indexOf(app)
+    newApps.splice(appIndex, 1)
+    const insertBeforeIndex = newApps.indexOf(insertBefore)
+    newApps.splice(insertBeforeIndex, 0, app)
+    return newApps
+}
+
 const MenuManagement = ({ apps, initialAppsOrder }) => {
     const [appsOrder, setAppsOrder] = useState(initialAppsOrder)
     const [mutate] = useDataMutation(mutation, {
         onComplete() { console.log("Updated order of apps") },
         onError(error) { console.log("Error updating app order:", error) }
     })
-    const handleAppMove = useCallback((appName1, appName2) => {
-        const index1 = appsOrder.indexOf(appName1)
-        const index2 = appsOrder.indexOf(appName2)
-        const newAppsOrder = [...appsOrder]
-        newAppsOrder[index1] = appName2
-        newAppsOrder[index2] = appName1
-
+    const handleAppMove = useCallback((app, insertBefore) => {
+        const newAppsOrder = moveApp(appsOrder, app, insertBefore)
         mutate(newAppsOrder)
         setAppsOrder(newAppsOrder)
     }, [appsOrder])
@@ -48,7 +52,10 @@ const MenuManagement = ({ apps, initialAppsOrder }) => {
             <DndProvider backend={HTML5Backend}>
                 <div className={'apps'}>
                     {appsOrder.map(appName => (
-                        <App key={appName} {...apps[appName]} onMove={handleAppMove} />
+                        <DraggableApp
+                            key={appName}
+                            onMove={handleAppMove}
+                            app={apps[appName]} />
                     ))}
                 </div>
             </DndProvider>

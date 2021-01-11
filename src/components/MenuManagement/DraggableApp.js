@@ -52,20 +52,18 @@ const App = ({ defaultAction, icon, displayName }) => (
 
 const DND_ITEM_TYPE = "APP"
 
-const DraggableApp = (props) => {
+const DraggableApp = ({ app, onMove }) => {
 	const ref = useRef()
 
 	const [{ isDragging }, connectDrag] = useDrag({
-		item: { name: props.name, type: DND_ITEM_TYPE },
-		collect(monitor) {
-			return { isDragging: monitor.isDragging() }
-		}
+		item: { name: app.name, type: DND_ITEM_TYPE },
+		collect: monitor => ({ isDragging: monitor.isDragging() })
 	})
 	const [, connectDrop] = useDrop({
 		accept: DND_ITEM_TYPE,
 		drop(item) {
-			if (item.name != props.name) {
-				props.onMove(item.name, props.name)
+			if (item.name != app.name) {
+				onMove(item.name, app.name)
 			}
 		}
 	})
@@ -75,7 +73,7 @@ const DraggableApp = (props) => {
 
 	return (
 		<div ref={ref} style={{ opacity: isDragging ? 0.5 : 1 }}>
-			<App {...props} />
+			<App {...app} />
 		</div>
 	)
 }
