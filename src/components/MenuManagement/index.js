@@ -18,14 +18,7 @@ const query = {
 const mutation = {
     resource: 'menu',
     type: 'create',
-    data: appsOrder => {
-        // TODO: Mutate converts arrays to objects, so we need to convert these
-        // objects back to an array. Need to find a cleaner way to do this or to
-        // fix `useDataMutation`.
-        const length = Math.max(...Object.keys(appsOrder)) + 1
-        appsOrder.length = length
-        return [].slice.call(appsOrder)
-    },
+    data: ({ items }) => items,
 }
 
 const moveApp = (apps, app, insertBefore) => {
@@ -51,7 +44,7 @@ const MenuManagement = ({ apps, initialAppsOrder }) => {
     const handleAppMove = useCallback(
         (app, insertBefore) => {
             const newAppsOrder = moveApp(appsOrder, app, insertBefore)
-            mutate(newAppsOrder)
+            mutate({ items: newAppsOrder })
             setAppsOrder(newAppsOrder)
         },
         [appsOrder]
