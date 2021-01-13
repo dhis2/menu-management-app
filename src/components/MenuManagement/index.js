@@ -7,8 +7,8 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import i18n from '../../locales'
 import { useAlerts } from '../AlertProvider'
-import classes from './MenuManagement.module.css'
 import DraggableApp from './DraggableApp'
+import classes from './MenuManagement.module.css'
 
 const query = {
     apps: {
