@@ -7,6 +7,7 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import i18n from '../../locales'
 import { useAlerts } from '../AlertProvider'
+import classes from './MenuManagement.module.css'
 import DraggableApp from './DraggableApp'
 
 const query = {
@@ -53,7 +54,7 @@ const MenuManagement = ({ apps, initialAppsOrder }) => {
     return (
         <Card>
             <DndProvider backend={HTML5Backend}>
-                <div className={'apps'}>
+                <div className={classes.apps}>
                     {appsOrder.map(appName => (
                         <DraggableApp
                             key={appName}
@@ -63,15 +64,6 @@ const MenuManagement = ({ apps, initialAppsOrder }) => {
                     ))}
                 </div>
             </DndProvider>
-
-            <style jsx>{`
-                .apps {
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: center;
-                    padding: 8px;
-                }
-            `}</style>
         </Card>
     )
 }

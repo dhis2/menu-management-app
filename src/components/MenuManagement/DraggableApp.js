@@ -2,51 +2,13 @@ import { PropTypes } from '@dhis2/prop-types'
 import { theme } from '@dhis2/ui-constants'
 import React, { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
+import classes from './DraggableApp.module.css'
 
 const App = ({ defaultAction, icon, displayName }) => (
     <div>
-        <a href={defaultAction}>
-            <img className={'app-icon'} src={icon} />
-            <div className={'app-name'}>{displayName}</div>
-
-            <style jsx>{`
-                a {
-                    display: inline-block;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    width: 96px;
-                    margin: 16px;
-                    padding: 16px;
-                    border-radius: 12px;
-                    text-decoration: none;
-                    cursor: pointer;
-                }
-                a:hover,
-                a:focus {
-                    background-color: ${theme.primary050};
-                    cursor: pointer;
-                }
-                a:hover > div {
-                    font-weight: 500;
-                    cursor: pointer;
-                }
-                .app-icon {
-                    width: 48px;
-                    height: 48px;
-                    cursor: pointer;
-                }
-                .app-name {
-                    margin-top: 14px;
-                    color: rgba(0, 0, 0, 0.87);
-                    font-size: 14px;
-                    letter-spacing: 0.01em;
-                    line-height: 16px;
-                    text-align: center;
-                    cursor: pointer;
-                }
-            `}</style>
+        <a className={classes['app-link']} href={defaultAction}>
+            <img className={classes['app-icon']} src={icon} />
+            <div className={classes['app-name']}>{displayName}</div>
         </a>
     </div>
 )
