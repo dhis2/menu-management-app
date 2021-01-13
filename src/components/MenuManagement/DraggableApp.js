@@ -1,5 +1,4 @@
 import { PropTypes } from '@dhis2/prop-types'
-import { theme } from '@dhis2/ui-constants'
 import React, { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import classes from './DraggableApp.module.css'
