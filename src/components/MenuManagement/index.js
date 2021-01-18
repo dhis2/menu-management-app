@@ -1,7 +1,7 @@
-import { join as joinPath } from 'path'
 import { useDataQuery, useDataMutation, useConfig } from '@dhis2/app-runtime'
 import { PropTypes } from '@dhis2/prop-types'
 import { NoticeBox, CenteredContent, CircularLoader, Card } from '@dhis2/ui'
+import { join as joinPath } from 'path-browserify'
 import React, { useMemo, useState, useCallback } from 'react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -22,12 +22,12 @@ const mutation = {
     data: ({ items }) => items,
 }
 
-const moveApp = (apps, app, insertBefore) => {
+const moveApp = (apps, app, target) => {
+    const appIndex = apps.indexOf(app)
+    const targetIndex = apps.indexOf(target)
     const newApps = [...apps]
-    const appIndex = newApps.indexOf(app)
     newApps.splice(appIndex, 1)
-    const insertBeforeIndex = newApps.indexOf(insertBefore)
-    newApps.splice(insertBeforeIndex, 0, app)
+    newApps.splice(targetIndex, 0, app)
     return newApps
 }
 
@@ -42,14 +42,16 @@ const MenuManagement = ({ apps, initialAppsOrder }) => {
             showCriticalAlert(error.message)
         },
     })
-    const handleAppMove = useCallback(
-        (app, insertBefore) => {
-            const newAppsOrder = moveApp(appsOrder, app, insertBefore)
-            mutate({ items: newAppsOrder })
+    const handleAppDrag = useCallback(
+        (app, target) => {
+            const newAppsOrder = moveApp(appsOrder, app, target)
             setAppsOrder(newAppsOrder)
         },
         [appsOrder]
     )
+    const handleAppDrop = useCallback(() => {
+        mutate({ items: appsOrder })
+    }, [appsOrder])
 
     return (
         <Card>
@@ -58,7 +60,8 @@ const MenuManagement = ({ apps, initialAppsOrder }) => {
                     {appsOrder.map(appName => (
                         <DraggableApp
                             key={appName}
-                            onMove={handleAppMove}
+                            onDrag={handleAppDrag}
+                            onDrop={handleAppDrop}
                             app={apps[appName]}
                         />
                     ))}

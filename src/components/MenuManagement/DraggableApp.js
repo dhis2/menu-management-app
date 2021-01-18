@@ -20,27 +20,30 @@ App.propTypes = {
 
 const DND_ITEM_TYPE = 'APP'
 
-const DraggableApp = ({ app, onMove }) => {
-    const ref = useRef()
-
+const DraggableApp = ({ app, onDrag, onDrop }) => {
     const [{ isDragging }, connectDrag] = useDrag({
         item: { name: app.name, type: DND_ITEM_TYPE },
         collect: monitor => ({ isDragging: monitor.isDragging() }),
+        end: onDrop,
     })
     const [, connectDrop] = useDrop({
         accept: DND_ITEM_TYPE,
-        drop(item) {
+        hover(item) {
             if (item.name != app.name) {
-                onMove(item.name, app.name)
+                onDrag(item.name, app.name)
             }
         },
     })
+    const ref = useRef()
 
     connectDrag(ref)
     connectDrop(ref)
 
     return (
-        <div ref={ref} style={{ opacity: isDragging ? 0.5 : 1 }}>
+        <div
+            ref={ref}
+            style={{ visibility: isDragging ? 'hidden' : 'visible' }}
+        >
             <App {...app} />
         </div>
     )
@@ -48,7 +51,8 @@ const DraggableApp = ({ app, onMove }) => {
 
 DraggableApp.propTypes = {
     app: PropTypes.any.isRequired,
-    onMove: PropTypes.func.isRequired,
+    onDrag: PropTypes.func.isRequired,
+    onDrop: PropTypes.func.isRequired,
 }
 
 export default DraggableApp
