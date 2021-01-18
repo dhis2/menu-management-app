@@ -1,12 +1,11 @@
 import { CssVariables } from '@dhis2/ui'
 import React from 'react'
 import classes from './App.module.css'
-import AlertProvider from './components/AlertProvider'
 import MenuManagement from './components/MenuManagement'
 import i18n from './locales'
 
 const App = () => (
-    <AlertProvider>
+    <>
         <CssVariables spacers theme />
         <div className={classes.container}>
             <header>
@@ -17,7 +16,7 @@ const App = () => (
             </header>
             <MenuManagement />
         </div>
-    </AlertProvider>
+    </>
 )
 
 export default App

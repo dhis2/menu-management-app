@@ -1,4 +1,9 @@
-import { useDataQuery, useDataMutation, useConfig } from '@dhis2/app-runtime'
+import {
+    useDataQuery,
+    useDataMutation,
+    useConfig,
+    useAlert,
+} from '@dhis2/app-runtime'
 import { PropTypes } from '@dhis2/prop-types'
 import { NoticeBox, CenteredContent, CircularLoader, Card } from '@dhis2/ui'
 import { join as joinPath } from 'path-browserify'
@@ -6,7 +11,6 @@ import React, { useMemo, useState, useCallback } from 'react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import i18n from '../../locales'
-import { useAlerts } from '../AlertProvider'
 import DraggableApp from './DraggableApp'
 import classes from './MenuManagement.module.css'
 
@@ -33,13 +37,19 @@ const moveApp = (apps, app, target) => {
 
 const MenuManagement = ({ apps, initialAppsOrder }) => {
     const [appsOrder, setAppsOrder] = useState(initialAppsOrder)
-    const { showSuccessAlert, showCriticalAlert } = useAlerts()
+    const { show: showSuccessfulUpdateAlert } = useAlert(
+        i18n.t('Updated order of apps.'),
+        { success: true }
+    )
+    const { show: showErrorUpdatingAlert } = useAlert(message => message, {
+        critical: true,
+    })
     const [mutate] = useDataMutation(mutation, {
         onComplete() {
-            showSuccessAlert(i18n.t('Updated order of apps.'))
+            showSuccessfulUpdateAlert()
         },
         onError(error) {
-            showCriticalAlert(error.message)
+            showErrorUpdatingAlert(error.message)
         },
     })
     const handleAppDrag = useCallback(
