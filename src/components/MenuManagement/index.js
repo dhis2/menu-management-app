@@ -6,7 +6,6 @@ import {
 } from '@dhis2/app-runtime'
 import { PropTypes } from '@dhis2/prop-types'
 import { NoticeBox, CenteredContent, CircularLoader, Card } from '@dhis2/ui'
-import { join as joinPath } from 'path-browserify'
 import React, { useMemo, useState, useCallback } from 'react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -84,6 +83,11 @@ const MenuManagement = ({ apps, initialAppsOrder }) => {
 MenuManagement.propTypes = {
     apps: PropTypes.object.isRequired,
     initialAppsOrder: PropTypes.array.isRequired,
+}
+
+const joinPath = (...parts) => {
+    const realParts = parts.filter(part => !!part)
+    return realParts.map(part => part.replace(/^\/+|\/+$/g, '')).join('/')
 }
 
 const MenuManagementWrapper = () => {
