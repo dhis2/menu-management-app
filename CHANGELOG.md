@@ -1,3 +1,10 @@
+# [28.2.0](https://github.com/dhis2/menu-management-app/compare/v28.1.0...v28.2.0) (2021-03-11)
+
+
+### Features
+
+* upgrade to @dhis2/ui v6 and bump other dependency versions ([#282](https://github.com/dhis2/menu-management-app/issues/282)) ([9957535](https://github.com/dhis2/menu-management-app/commit/9957535d1e2a9015493625aeca6fadd61131d59a))
+
 # [28.1.0](https://github.com/dhis2/menu-management-app/compare/v28.0.6...v28.1.0) (2021-03-11)
 
 
