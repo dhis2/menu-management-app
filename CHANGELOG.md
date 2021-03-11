@@ -1,3 +1,10 @@
+# [28.1.0](https://github.com/dhis2/menu-management-app/compare/v28.0.6...v28.1.0) (2021-03-11)
+
+
+### Features
+
+* move to app platform [DHIS2-10316] ([#249](https://github.com/dhis2/menu-management-app/issues/249)) ([c3773d1](https://github.com/dhis2/menu-management-app/commit/c3773d1e64cb34b1cb6315d679e62b6a05d288e6))
+
 ## [28.0.6](https://github.com/dhis2/menu-management-app/compare/v28.0.5...v28.0.6) (2021-02-15)
 
 
