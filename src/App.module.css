@@ -1,0 +1,17 @@
+.container {
+    max-width: 768px;
+    margin: auto;
+    padding: 32px 16px;
+}
+
+.title {
+    margin-top: 0;
+    margin-bottom: var(--spacers-dp8);
+    font-size: 1.5rem;
+}
+
+.description {
+    margin-top: 0;
+    margin-bottom: var(--spacers-dp16);
+    color: rgba(0, 0, 0, 0.87);
+}
