@@ -40,7 +40,7 @@ const MenuManagement = ({ apps, initialAppsOrder }) => {
         i18n.t('Updated order of apps.'),
         { success: true }
     )
-    const { show: showErrorUpdatingAlert } = useAlert(message => message, {
+    const { show: showErrorUpdatingAlert } = useAlert((message) => message, {
         critical: true,
     })
     const [mutate] = useDataMutation(mutation, {
@@ -66,7 +66,7 @@ const MenuManagement = ({ apps, initialAppsOrder }) => {
         <Card>
             <DndProvider backend={HTML5Backend}>
                 <div className={classes.apps}>
-                    {appsOrder.map(appName => (
+                    {appsOrder.map((appName) => (
                         <DraggableApp
                             key={appName}
                             onDrag={handleAppDrag}
@@ -86,8 +86,8 @@ MenuManagement.propTypes = {
 }
 
 const joinPath = (...parts) => {
-    const realParts = parts.filter(part => !!part)
-    return realParts.map(part => part.replace(/^\/+|\/+$/g, '')).join('/')
+    const realParts = parts.filter((part) => !!part)
+    return realParts.map((part) => part.replace(/^\/+|\/+$/g, '')).join('/')
 }
 
 const MenuManagementWrapper = () => {
@@ -95,12 +95,12 @@ const MenuManagementWrapper = () => {
     const { loading, error, data } = useDataQuery(query)
 
     const apps = useMemo(() => {
-        const getPath = path =>
+        const getPath = (path) =>
             path.startsWith('http:') || path.startsWith('https:')
                 ? path
                 : joinPath(baseUrl, 'api', path)
 
-        return data?.apps.modules.map(app => ({
+        return data?.apps.modules.map((app) => ({
             ...app,
             icon: getPath(app.icon),
             defaultAction: getPath(app.defaultAction),
@@ -126,7 +126,7 @@ const MenuManagementWrapper = () => {
     }
 
     const appsByName = {}
-    apps.forEach(app => (appsByName[app.name] = app))
+    apps.forEach((app) => (appsByName[app.name] = app))
 
     return (
         <MenuManagement

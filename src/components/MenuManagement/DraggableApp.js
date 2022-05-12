@@ -23,7 +23,7 @@ const DND_ITEM_TYPE = 'APP'
 const DraggableApp = ({ app, onDrag, onDrop }) => {
     const [{ isDragging }, connectDrag] = useDrag({
         item: { name: app.name, type: DND_ITEM_TYPE },
-        collect: monitor => ({ isDragging: monitor.isDragging() }),
+        collect: (monitor) => ({ isDragging: monitor.isDragging() }),
         end: onDrop,
     })
     const [, connectDrop] = useDrop({
