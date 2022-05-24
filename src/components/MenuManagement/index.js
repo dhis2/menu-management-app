@@ -9,8 +9,8 @@ import { NoticeBox, CenteredContent, CircularLoader, Card } from '@dhis2/ui'
 import React, { useMemo, useState, useCallback } from 'react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import i18n from '../../locales'
-import DraggableApp from './DraggableApp'
+import i18n from '../../locales/index.js'
+import DraggableApp from './DraggableApp.js'
 import classes from './MenuManagement.module.css'
 
 const query = {
