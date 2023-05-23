@@ -1,14 +1,14 @@
 # 
 # Translators:
-# Hamza Assada <7amza.it@gmail.com>, 2021
+# Hamza Assada <7amza.it@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2021-01-11T11:03:15.488Z\n"
-"PO-Revision-Date: 2021-03-11 23:16+0000\n"
-"Last-Translator: Hamza Assada <7amza.it@gmail.com>, 2021\n"
-"Language-Team: Arabic (https://www.transifex.com/hisp-uio/teams/100509/ar/)\n"
+"PO-Revision-Date: 2023-05-22 18:54+0000\n"
+"Last-Translator: Hamza Assada <7amza.it@gmail.com>, 2023\n"
+"Language-Team: Arabic (https://app.transifex.com/hisp-uio/teams/100509/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
