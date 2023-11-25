@@ -19,10 +19,10 @@ msgid "Your apps"
 msgstr "Сизнинг иловаларингиз"
 
 msgid "Drag and drop the menu items to re-order them."
-msgstr ""
+msgstr "Меню тартибини ўзгартириш учун уларни силжитинг"
 
 msgid "Updated order of apps."
-msgstr ""
+msgstr "Иловалар тартиби янгиланди"
 
 msgid "Something went wrong whilst loading your apps"
-msgstr ""
+msgstr "Иловаларингизни юклашда хатолик юз берди"
