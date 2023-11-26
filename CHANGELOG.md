@@ -1,3 +1,10 @@
+## [28.2.11](https://github.com/dhis2/menu-management-app/compare/v28.2.10...v28.2.11) (2023-11-26)
+
+
+### Bug Fixes
+
+* **translations:** sync translations from transifex (master) ([6daa26e](https://github.com/dhis2/menu-management-app/commit/6daa26e86af0f079cd5817405dbd8152545faed6))
+
 ## [28.2.10](https://github.com/dhis2/menu-management-app/compare/v28.2.9...v28.2.10) (2023-09-14)
 
 
