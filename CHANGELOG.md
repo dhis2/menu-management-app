@@ -1,3 +1,10 @@
+# [28.3.0](https://github.com/dhis2/menu-management-app/compare/v28.2.11...v28.3.0) (2024-03-05)
+
+
+### Features
+
+* prepare for release ([95bc72f](https://github.com/dhis2/menu-management-app/commit/95bc72fc2dc5839db861206cc7eb0c59216b0526))
+
 ## [28.2.11](https://github.com/dhis2/menu-management-app/compare/v28.2.10...v28.2.11) (2023-11-26)
 
 
