@@ -1,3 +1,15 @@
+# [100.0.0](https://github.com/dhis2/menu-management-app/compare/v99.9.9...v100.0.0) (2024-03-05)
+
+
+### Features
+
+* trigger first release ([c595f57](https://github.com/dhis2/menu-management-app/commit/c595f57b2cacb7e8a5658d5f9546042465a9f764))
+
+
+### BREAKING CHANGES
+
+* trigger the first release on CR
+
 # [28.3.0](https://github.com/dhis2/menu-management-app/compare/v28.2.11...v28.3.0) (2024-03-05)
 
 
