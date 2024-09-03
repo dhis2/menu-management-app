@@ -4,8 +4,8 @@ import {
     useConfig,
     useAlert,
 } from '@dhis2/app-runtime'
-import { PropTypes } from '@dhis2/prop-types'
 import { NoticeBox, CenteredContent, CircularLoader, Card } from '@dhis2/ui'
+import PropTypes from 'prop-types'
 import React, { useMemo, useState, useCallback } from 'react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
