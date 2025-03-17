@@ -12,7 +12,8 @@
     cursor: pointer;
 }
 
-.app-link:hover, .app-link:focus {
+.app-link:hover,
+.app-link:focus {
     background-color: var(--theme-primary050);
     cursor: pointer;
 }

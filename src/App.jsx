@@ -1,7 +1,7 @@
 import { CssVariables } from '@dhis2/ui'
 import React from 'react'
 import classes from './App.module.css'
-import MenuManagement from './components/MenuManagement/index.js'
+import MenuManagement from './components/MenuManagement/index.jsx'
 import i18n from './locales/index.js'
 
 const App = () => (
