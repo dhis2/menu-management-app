@@ -10,7 +10,7 @@ import React, { useMemo, useState, useCallback } from 'react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import i18n from '../../locales/index.js'
-import DraggableApp from './DraggableApp.js'
+import DraggableApp from './DraggableApp.jsx'
 import classes from './MenuManagement.module.css'
 
 const query = {
