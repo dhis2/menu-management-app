@@ -1,3 +1,15 @@
+# [100.2.0](https://github.com/dhis2/menu-management-app/compare/v100.1.0...v100.2.0) (2025-03-23)
+
+
+### Bug Fixes
+
+* **app-platform:** upgrade platform tools to use vite and react 18 ([ca63f5a](https://github.com/dhis2/menu-management-app/commit/ca63f5a7c36b55d052cb28cf5e5b49a73ca515af))
+
+
+### Features
+
+* **i18n:** update translation strings and metadata in en.pot ([1d22ad2](https://github.com/dhis2/menu-management-app/commit/1d22ad2add138fd805fd385acc61eecebb693d3b))
+
 # [100.1.0](https://github.com/dhis2/menu-management-app/compare/v100.0.1...v100.1.0) (2025-03-17)
 
 
