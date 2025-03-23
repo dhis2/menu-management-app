@@ -5,17 +5,25 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2021-01-11T11:03:15.488Z\n"
-"PO-Revision-Date: 2021-01-11T11:03:15.488Z\n"
+"POT-Creation-Date: 2025-03-23T18:54:40.288Z\n"
+"PO-Revision-Date: 2025-03-23T18:54:40.289Z\n"
 
 msgid "Your apps"
-msgstr ""
+msgstr "Your apps"
 
 msgid "Drag and drop the menu items to re-order them."
-msgstr ""
+msgstr "Drag and drop the menu items to re-order them."
 
 msgid "Updated order of apps."
-msgstr ""
+msgstr "Updated order of apps."
 
 msgid "Something went wrong whilst loading your apps"
+msgstr "Something went wrong whilst loading your apps"
+
+msgctxt "Application title"
+msgid "__MANIFEST_APP_TITLE"
+msgstr "Menu Management"
+
+msgctxt "Application description"
+msgid "__MANIFEST_APP_DESCRIPTION"
 msgstr ""
