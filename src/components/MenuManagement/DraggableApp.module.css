@@ -43,10 +43,7 @@
 
 .truncate {
     display: inline-block;
-    /* clé */
     max-width: 120px;
-    /* clé */
-    /* white-space: nowrap; */
     overflow: hidden;
     text-overflow: ellipsis;
     line-clamp: 2;
