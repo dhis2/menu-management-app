@@ -10,6 +10,7 @@
     border-radius: 12px;
     text-decoration: none;
     cursor: pointer;
+    color: black;
 }
 
 .app-link:hover,
@@ -18,7 +19,7 @@
     cursor: pointer;
 }
 
-.app-link:hover > div {
+.app-link:hover>div {
     font-weight: 500;
     cursor: pointer;
 }
@@ -37,4 +38,15 @@
     line-height: 16px;
     text-align: center;
     cursor: pointer;
+}
+
+
+.truncate {
+    display: inline-block;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-clamp: 2;
+    text-align: center;
+    margin-top: 10px;
 }
