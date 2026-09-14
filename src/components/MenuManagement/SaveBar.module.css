@@ -1,0 +1,35 @@
+/* Extends past .container's own side padding (margin-inline: -dp24) so its
+   opaque background fully covers that gutter — otherwise a card's shadow
+   above can peek out past the bar's edge while it scrolls by underneath.
+   padding-inline puts the content back where it would otherwise have been
+   (dp24 regained, plus dp16 to line up with the cards' own inner padding). */
+.bar {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacers-dp16);
+    margin-top: var(--spacers-dp24);
+    margin-inline: calc(-1 * var(--spacers-dp24));
+    padding: var(--spacers-dp12)
+        calc(var(--spacers-dp24) + var(--spacers-dp16));
+    border-top: 1px solid var(--colors-grey300);
+    background: var(--colors-white);
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: var(--spacers-dp8);
+    color: var(--colors-grey900);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.statusIcon {
+    display: flex;
+    flex: 0 0 auto;
+    color: var(--colors-yellow700);
+}

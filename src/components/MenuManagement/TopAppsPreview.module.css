@@ -1,0 +1,62 @@
+/* Follows the page scroll so the result stays visible while dragging in a
+   long list. Falls back to static in the stacked layout below. */
+.sticky {
+    position: sticky;
+    top: var(--spacers-dp24);
+}
+
+.zone {
+    padding: var(--spacers-dp16);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacers-dp12);
+    margin-bottom: var(--spacers-dp16);
+}
+
+.heading {
+    margin: 0;
+    color: var(--colors-grey900);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.grid {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    gap: var(--spacers-dp8);
+    grid-template-columns: repeat(4, 1fr);
+    list-style: none;
+}
+
+.tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacers-dp8);
+    padding: var(--spacers-dp12) var(--spacers-dp4);
+}
+
+.icon {
+    width: 48px;
+    height: 48px;
+}
+
+.label {
+    color: var(--colors-grey800);
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+    .sticky {
+        position: static;
+    }
+}

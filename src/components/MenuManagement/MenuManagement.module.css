@@ -1,6 +1,32 @@
-.apps {
+.zones {
+    display: grid;
+    align-items: start;
+    gap: var(--spacers-dp24);
+    grid-template-columns: 1.15fr 1fr;
+}
+
+.dragOverlay {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 8px;
+    align-items: center;
+    gap: var(--spacers-dp8);
+    padding: var(--spacers-dp8) var(--spacers-dp12);
+    border: 1px solid var(--colors-grey300);
+    border-radius: 4px;
+    background: var(--colors-white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+    color: var(--colors-grey900);
+    cursor: grabbing;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.dragOverlayIcon {
+    width: 24px;
+    height: 24px;
+}
+
+@media (max-width: 900px) {
+    .zones {
+        grid-template-columns: 1fr;
+    }
 }

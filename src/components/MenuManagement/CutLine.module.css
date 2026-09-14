@@ -1,0 +1,23 @@
+.cutLine {
+    display: flex;
+    align-items: center;
+    gap: var(--spacers-dp8);
+    margin: var(--spacers-dp8) 0;
+    padding: 0 var(--spacers-dp8);
+    list-style: none;
+}
+
+.rule {
+    flex: 1 1 auto;
+    margin: 0;
+    border: none;
+    border-top: 1px dashed var(--colors-grey400);
+}
+
+.label {
+    flex: 0 1 auto;
+    color: var(--colors-grey600);
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+}

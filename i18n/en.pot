@@ -5,20 +5,74 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-03-23T18:54:40.288Z\n"
-"PO-Revision-Date: 2025-03-23T18:54:40.289Z\n"
+"POT-Creation-Date: 2026-09-14T11:04:08.174Z\n"
+"PO-Revision-Date: 2026-09-14T11:04:08.175Z\n"
 
 msgid "Your apps"
 msgstr "Your apps"
 
-msgid "Drag and drop the menu items to re-order them."
-msgstr "Drag and drop the menu items to re-order them."
+msgid "Choose which apps appear in your menu and the order they appear in."
+msgstr "Choose which apps appear in your menu and the order they appear in."
 
-msgid "Updated order of apps."
-msgstr "Updated order of apps."
+msgid "All apps"
+msgstr "All apps"
+
+msgid "{{total}} apps"
+msgstr "{{total}} apps"
+
+msgid "Drag to reorder, or use your keyboard."
+msgstr "Drag to reorder, or use your keyboard."
+
+msgid "sortable app"
+msgstr "sortable app"
+
+msgid "Reorder {{name}}. Currently position {{position}} of {{total}}"
+msgstr "Reorder {{name}}. Currently position {{position}} of {{total}}"
+
+msgid "Not included in the Top apps grid"
+msgstr "Not included in the Top apps grid"
+
+msgid "Apps menu saved."
+msgstr "Apps menu saved."
 
 msgid "Something went wrong whilst loading your apps"
 msgstr "Something went wrong whilst loading your apps"
+
+msgid "Unsaved changes"
+msgstr "Unsaved changes"
+
+msgid "Discard changes"
+msgstr "Discard changes"
+
+msgid "Saving…"
+msgstr "Saving…"
+
+msgid "Save"
+msgstr "Save"
+
+msgid "Show"
+msgstr "Show"
+
+msgid "Top apps preview"
+msgstr "Top apps preview"
+
+msgid "Picked up {{name}}."
+msgstr "Picked up {{name}}."
+
+msgid "{{name}} is no longer over a droppable area."
+msgstr "{{name}} is no longer over a droppable area."
+
+msgid "{{name}} was moved near {{overName}}."
+msgstr "{{name}} was moved near {{overName}}."
+
+msgid "{{name}} was dropped."
+msgstr "{{name}} was dropped."
+
+msgid "{{name}} was dropped near {{overName}}."
+msgstr "{{name}} was dropped near {{overName}}."
+
+msgid "Dragging {{name}} was cancelled."
+msgstr "Dragging {{name}} was cancelled."
 
 msgctxt "Application title"
 msgid "__MANIFEST_APP_TITLE"
