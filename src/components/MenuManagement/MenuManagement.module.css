@@ -1,7 +1,7 @@
 .zones {
     display: grid;
     align-items: start;
-    gap: var(--spacers-dp24);
+    gap: var(--spacers-dp12);
     grid-template-columns: 1.15fr 1fr;
 }
 
