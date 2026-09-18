@@ -12,7 +12,7 @@ const App = () => (
                 <h1 className={classes.title}>{i18n.t('Your apps')}</h1>
                 <p className={classes.description}>
                     {i18n.t(
-                        'Choose which apps appear in your menu and the order they appear in.'
+                        'Set the order of your apps. The top ones are pinned to your top menu.'
                     )}
                 </p>
             </header>

@@ -11,8 +11,8 @@ msgstr ""
 msgid "Your apps"
 msgstr "Your apps"
 
-msgid "Choose which apps appear in your menu and the order they appear in."
-msgstr "Choose which apps appear in your menu and the order they appear in."
+msgid "Set the order of your apps. The top ones are pinned to your top menu."
+msgstr "Set the order of your apps. The top ones are pinned to your top menu."
 
 msgid "All apps"
 msgstr "All apps"
@@ -53,8 +53,8 @@ msgstr "Save"
 msgid "Show"
 msgstr "Show"
 
-msgid "Top apps preview"
-msgstr "Top apps preview"
+msgid "Top apps"
+msgstr "Top apps"
 
 msgid "Picked up {{name}}."
 msgstr "Picked up {{name}}."

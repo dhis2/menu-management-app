@@ -10,7 +10,7 @@ const CutLine = () => (
     <li className={classes.cutLine} role="separator">
         <hr className={classes.rule} />
         <span className={classes.label}>
-            {i18n.t('Not included in the Top apps grid')}
+            {i18n.t('Not in Top apps grid')}
         </span>
         <hr className={classes.rule} />
     </li>

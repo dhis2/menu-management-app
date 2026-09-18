@@ -24,7 +24,7 @@ const TopAppsPreview = ({
                 <div className={classes.zone}>
                     <div className={classes.header}>
                         <h2 className={classes.heading}>
-                            {i18n.t('Top apps preview')}
+                            {i18n.t('Top apps')}
                         </h2>
                         <TopAppsCountControl
                             count={topAppsCount}
@@ -34,7 +34,7 @@ const TopAppsPreview = ({
 
                     <ul
                         className={classes.grid}
-                        aria-label={i18n.t('Top apps preview')}
+                        aria-label={i18n.t('Top apps')}
                     >
                         {topApps.map((name) => {
                             const app = appsByName[name]

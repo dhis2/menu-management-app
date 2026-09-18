@@ -7,4 +7,4 @@
 export const DEFAULT_TOP_APPS_COUNT = 8
 
 // Selectable values for the "how many top apps" prototype control.
-export const TOP_APPS_COUNT_OPTIONS = [4, 6, 8, 10, 12, 16]
+export const TOP_APPS_COUNT_OPTIONS = [4, 8, 12, 16]
