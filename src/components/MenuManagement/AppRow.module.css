@@ -1,0 +1,64 @@
+.row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacers-dp8);
+    padding: var(--spacers-dp4) var(--spacers-dp8);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: var(--colors-white);
+    list-style: none;
+}
+
+.row:hover {
+    border-color: var(--colors-grey300);
+    background: var(--colors-grey050);
+}
+
+/* The floating DragOverlay is the "real" visual while dragging — this is
+   just the placeholder left behind in the list, so it fades out instead of
+   staying opaque next to it (which read as two copies of the same row). */
+.isDragging {
+    opacity: 0.4;
+}
+
+.handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    padding: var(--spacers-dp4);
+    border: none;
+    border-radius: 3px;
+    background: none;
+    color: var(--colors-grey500);
+    cursor: grab;
+}
+
+.handle:hover {
+    color: var(--colors-grey800);
+}
+
+.handle:focus-visible {
+    outline: 2px solid var(--theme-focus);
+    outline-offset: -1px;
+}
+
+.handle:active {
+    cursor: grabbing;
+}
+
+.icon {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+}
+
+.name {
+    overflow: hidden;
+    flex: 1 1 auto;
+    color: var(--colors-grey900);
+    font-size: 14px;
+    line-height: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

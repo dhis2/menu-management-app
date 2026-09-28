@@ -1,17 +1,19 @@
 import { CssVariables } from '@dhis2/ui'
 import React from 'react'
 import classes from './App.module.css'
-import MenuManagement from './components/MenuManagement/index.jsx'
+import MenuManagement from './components/MenuManagement/MenuManagement.jsx'
 import i18n from './locales/index.js'
 
 const App = () => (
     <>
-        <CssVariables spacers theme />
+        <CssVariables spacers colors theme />
         <div className={classes.container}>
             <header>
-                <h1 className={classes.title}>{i18n.t('Your apps')}</h1>
+                <h1 className={classes.title}>{i18n.t('Menu Management')}</h1>
                 <p className={classes.description}>
-                    {i18n.t('Drag and drop the menu items to re-order them.')}
+                    {i18n.t(
+                        'Set the order of your apps. The top ones are pinned to your top menu.'
+                    )}
                 </p>
             </header>
             <MenuManagement />

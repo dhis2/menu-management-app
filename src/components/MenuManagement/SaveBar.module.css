@@ -1,0 +1,13 @@
+/* Sits below the shared card now (see MenuManagement.jsx), as its own action
+   row rather than nested inside it — not a viewport-pinned bar. The earlier
+   sticky-to-viewport-bottom version could end up effectively invisible on
+   tall screens where the page never needed to scroll, since a sticky
+   element only "sticks" while its container actually scrolls. */
+.bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 0 0 auto;
+    gap: var(--spacers-dp16);
+    margin-top: var(--spacers-dp16);
+}

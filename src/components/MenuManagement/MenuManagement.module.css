@@ -1,6 +1,67 @@
-.apps {
+/* align-items: stretch (the grid default) gives both columns' cells the
+   full row height — AppList.module.css's .zone relies on that for its own
+   internal-scroll sizing, and TopAppsPreview.module.css's tinted .zone
+   relies on it to fill the section too (only its inner .gridPlate sizes to
+   its own content). */
+.zones {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+}
+
+.dragOverlay {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 8px;
+    align-items: center;
+    gap: var(--spacers-dp8);
+    padding: var(--spacers-dp8) var(--spacers-dp12);
+    border: 1px solid var(--colors-grey300);
+    border-radius: 4px;
+    background: var(--colors-white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+    color: var(--colors-grey900);
+    cursor: grabbing;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.dragOverlayIcon {
+    width: 24px;
+    height: 24px;
+}
+
+@media (max-width: 900px) {
+    .zones {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 901px) {
+    /* .container (App.module.css) carries the real height:100% cascade
+       down from the document root, so the card just needs to claim the
+       remaining space as a flex child — no viewport-unit arithmetic, and
+       no separate compensation for the banner above it: flex distribution
+       already gives the banner its own natural height first and lets the
+       card absorb whatever's left, automatically. The list scrolls inside
+       AppList itself (see AppList.module.css) — this level only needs to
+       stop growing past the space it's given. Left as ordinary full-page
+       flow on narrow screens (see the max-width: 900px block above), where
+       a nested scroll region reads as more awkward than a bit of extra
+       page scroll. */
+    /* Card (@dhis2/ui) bakes in its own display:inline-block/height:100%
+       via a styled-jsx <style> tag with the same specificity as a plain
+       .card class — whichever stylesheet is injected last wins, so a plain
+       override is unreliable (same class of issue as AlertBar's baked-in
+       animation, discovered earlier). The data-test attribute Card renders
+       with bumps our selector's specificity so it always wins regardless
+       of injection order. */
+    :global([data-test='dhis2-uicore-card']).card {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        min-height: 420px;
+    }
+
+    .zones {
+        flex: 1 1 auto;
+        min-height: 0;
+    }
 }

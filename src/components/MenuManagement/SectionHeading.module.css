@@ -1,0 +1,12 @@
+/* Matches the Global Shell's own menu group-label styling (14px/400/grey700,
+   dp8 padding) rather than a heavier "eyebrow" style, so the two groups
+   read as an extension of the real menu rather than a bespoke control. */
+.heading {
+    margin: var(--spacers-dp8) 0;
+    padding: var(--spacers-dp8);
+    color: var(--colors-grey700);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    list-style: none;
+}
