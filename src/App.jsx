@@ -9,7 +9,7 @@ const App = () => (
         <CssVariables spacers colors theme />
         <div className={classes.container}>
             <header>
-                <h1 className={classes.title}>{i18n.t('Your apps')}</h1>
+                <h1 className={classes.title}>{i18n.t('Menu Management')}</h1>
                 <p className={classes.description}>
                     {i18n.t(
                         'Set the order of your apps. The top ones are pinned to your top menu.'

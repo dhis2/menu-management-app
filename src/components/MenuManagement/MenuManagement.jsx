@@ -1,5 +1,5 @@
 import { useAlert } from '@dhis2/app-runtime'
-import { CenteredContent, CircularLoader, NoticeBox } from '@dhis2/ui'
+import { Card, CenteredContent, CircularLoader, NoticeBox } from '@dhis2/ui'
 import {
     DndContext,
     DragOverlay,
@@ -14,13 +14,14 @@ import { sortableKeyboardCoordinates } from '@dnd-kit/sortable'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useApps } from '../../api/useApps.js'
 import { useSaveMenuOrder } from '../../api/useSaveMenuOrder.js'
-import { DEFAULT_TOP_APPS_COUNT } from '../../constants.js'
+import { TOP_MENU_DIVIDER_ID } from '../../constants.js'
 import i18n from '../../locales/index.js'
 import { createAnnouncements } from './announcements.js'
 import AppList from './AppList.jsx'
 import classes from './MenuManagement.module.css'
 import SaveBar from './SaveBar.jsx'
 import TopAppsPreview from './TopAppsPreview.jsx'
+import UnsavedChangesBanner from './UnsavedChangesBanner.jsx'
 import { useMenuOrder } from './useMenuOrder.js'
 
 const MenuManagement = () => {
@@ -30,9 +31,6 @@ const MenuManagement = () => {
 
     const [saving, setSaving] = useState(false)
     const [activeId, setActiveId] = useState(null)
-    // Local only — there is nowhere to persist this yet, so it is kept out
-    // of the dirty/save path on purpose (see TopAppsCountControl).
-    const [topAppsCount, setTopAppsCount] = useState(DEFAULT_TOP_APPS_COUNT)
 
     const { show: showSuccessAlert } = useAlert(i18n.t('Apps menu saved.'), {
         success: true,
@@ -100,10 +98,18 @@ const MenuManagement = () => {
     const handleDragCancel = useCallback(() => setActiveId(null), [])
 
     const { order, commit } = state
+    const topAppsCount = order.indexOf(TOP_MENU_DIVIDER_ID)
+    // TopAppsPreview and the save payload don't know about the divider —
+    // they work with the plain list of real app names.
+    const realOrder = useMemo(
+        () => order.filter((name) => name !== TOP_MENU_DIVIDER_ID),
+        [order]
+    )
+
     const handleSave = useCallback(async () => {
         setSaving(true)
         try {
-            await saveMenuOrder(order)
+            await saveMenuOrder(realOrder)
             commit()
             showSuccessAlert()
         } catch (saveError) {
@@ -112,7 +118,7 @@ const MenuManagement = () => {
         } finally {
             setSaving(false)
         }
-    }, [order, saveMenuOrder, commit, showSuccessAlert, showErrorAlert])
+    }, [realOrder, saveMenuOrder, commit, showSuccessAlert, showErrorAlert])
 
     if (loading || state.status === 'loading') {
         return (
@@ -144,19 +150,18 @@ const MenuManagement = () => {
             onDragCancel={handleDragCancel}
             accessibility={{ announcements }}
         >
-            <div className={classes.zones}>
-                <AppList
-                    order={order}
-                    appsByName={appsByName}
-                    topAppsCount={topAppsCount}
-                />
-                <TopAppsPreview
-                    order={order}
-                    appsByName={appsByName}
-                    topAppsCount={topAppsCount}
-                    onTopAppsCountChange={setTopAppsCount}
-                />
-            </div>
+            <UnsavedChangesBanner isDirty={isDirty} />
+
+            <Card className={classes.card}>
+                <div className={classes.zones}>
+                    <AppList order={order} appsByName={appsByName} />
+                    <TopAppsPreview
+                        order={realOrder}
+                        appsByName={appsByName}
+                        topAppsCount={topAppsCount}
+                    />
+                </div>
+            </Card>
 
             <SaveBar
                 isDirty={isDirty}

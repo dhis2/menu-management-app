@@ -5,11 +5,11 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2026-09-14T11:04:08.174Z\n"
-"PO-Revision-Date: 2026-09-14T11:04:08.175Z\n"
+"POT-Creation-Date: 2026-09-28T10:01:38.868Z\n"
+"PO-Revision-Date: 2026-09-28T10:01:38.868Z\n"
 
-msgid "Your apps"
-msgstr "Your apps"
+msgid "Menu Management"
+msgstr "Menu Management"
 
 msgid "Set the order of your apps. The top ones are pinned to your top menu."
 msgstr "Set the order of your apps. The top ones are pinned to your top menu."
@@ -17,11 +17,14 @@ msgstr "Set the order of your apps. The top ones are pinned to your top menu."
 msgid "All apps"
 msgstr "All apps"
 
-msgid "{{total}} apps"
-msgstr "{{total}} apps"
+msgid "Drag apps to reorder them, or to move them between groups."
+msgstr "Drag apps to reorder them, or to move them between groups."
 
-msgid "Drag to reorder, or use your keyboard."
-msgstr "Drag to reorder, or use your keyboard."
+msgid "Top apps"
+msgstr "Top apps"
+
+msgid "Other apps"
+msgstr "Other apps"
 
 msgid "sortable app"
 msgstr "sortable app"
@@ -29,17 +32,11 @@ msgstr "sortable app"
 msgid "Reorder {{name}}. Currently position {{position}} of {{total}}"
 msgstr "Reorder {{name}}. Currently position {{position}} of {{total}}"
 
-msgid "Not included in the Top apps grid"
-msgstr "Not included in the Top apps grid"
-
 msgid "Apps menu saved."
 msgstr "Apps menu saved."
 
 msgid "Something went wrong whilst loading your apps"
 msgstr "Something went wrong whilst loading your apps"
-
-msgid "Unsaved changes"
-msgstr "Unsaved changes"
 
 msgid "Discard changes"
 msgstr "Discard changes"
@@ -50,11 +47,11 @@ msgstr "Saving…"
 msgid "Save"
 msgstr "Save"
 
-msgid "Show"
-msgstr "Show"
+msgid "Top menu preview"
+msgstr "Top menu preview"
 
-msgid "Top apps"
-msgstr "Top apps"
+msgid "You have unsaved changes."
+msgstr "You have unsaved changes."
 
 msgid "Picked up {{name}}."
 msgstr "Picked up {{name}}."

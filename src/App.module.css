@@ -1,4 +1,30 @@
+/* Establishes a real height chain from the true document root down to this
+   app's own content, instead of guessing at viewport-unit arithmetic. This
+   app is a coreApp (see d2.config.js) — meant to run inside the DHIS2
+   Global Shell, which renders its own header outside this app's DOM, so a
+   raw `100vh` here can't know how much of the viewport that chrome already
+   consumes. A height:100% cascade adapts to whatever height the host
+   actually grants #dhis2-app-root, standalone or embedded alike. */
+:global(html),
+:global(body) {
+    height: 100%;
+    margin: 0;
+}
+
+/* An ID selector written as :global(#dhis2-app-root) compiles with this
+   build's CSS-module transform to a bare `dhis2-app-root{...}` type
+   selector (the leading # is dropped) — a silent no-op that breaks the
+   entire height cascade below it. An attribute selector sidesteps whatever
+   parses the ID form incorrectly. */
+:global([id='dhis2-app-root']) {
+    height: 100%;
+}
+
 .container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 100%;
     max-width: 1120px;
     margin: auto;
     padding: var(--spacers-dp32) var(--spacers-dp24);

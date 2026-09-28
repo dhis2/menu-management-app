@@ -1,19 +1,39 @@
-/* Follows the page scroll so the result stays visible while dragging in a
-   long list. Falls back to static in the stacked layout below. */
+/* Sticks to the top of .zones' own scroll region (see MenuManagement.module.css
+   — .zones scrolls internally above 900px) so the result stays visible while
+   dragging in a long list. Falls back to static in the stacked layout below,
+   where .zones is part of the ordinary page scroll instead. Stretches to
+   the full section height via the grid's default align-items: stretch,
+   same as the left column. This is the actual grid item, so it also needs
+   min-height: 0 — without it, its automatic minimum size defaults to its
+   content's min-content height (the full top-apps grid), forcing the row —
+   and everything above it up to .container — to grow to fit rather than
+   leaving the scroll to .gridPlate below. */
 .sticky {
     position: sticky;
-    top: var(--spacers-dp24);
+    top: 0;
+    height: 100%;
+    min-height: 0;
 }
 
+/* Tinted outer panel + border, matching how @dhis2/ui's own NoticeBox pairs
+   a tint with a border rather than a bare color patch. Flex column so
+   .gridPlate sits at the top and the tint fills whatever's left below it.
+   overflow: hidden keeps the panel itself from growing past the section
+   height it's stretched to — .gridPlate is the part that scrolls instead. */
 .zone {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 100%;
     padding: var(--spacers-dp16);
+    background: var(--colors-grey050);
+    border-left: 1px solid var(--colors-grey200);
+    border-radius: 3px;
+    overflow: hidden;
 }
 
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--spacers-dp12);
+    flex: 0 0 auto;
     margin-bottom: var(--spacers-dp16);
 }
 
@@ -25,6 +45,18 @@
     line-height: 24px;
 }
 
+/* Holds the actual tile grid inside the tinted panel around it. flex +
+   min-height: 0 lets it shrink below its content size so a long top-apps
+   list scrolls internally (like AppList.module.css's .list) instead of
+   pushing past .zone's fixed height. */
+.gridPlate {
+    flex: 1 1 auto;
+    min-height: 0;
+    box-sizing: border-box;
+    padding: var(--spacers-dp12);
+    overflow-y: auto;
+}
+
 .grid {
     display: grid;
     margin: 0;
@@ -32,6 +64,8 @@
     gap: var(--spacers-dp8);
     grid-template-columns: repeat(4, 1fr);
     list-style: none;
+    cursor: default;
+    pointer-events: none;
 }
 
 .tile {

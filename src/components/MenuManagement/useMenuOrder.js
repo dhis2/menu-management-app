@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useReducer } from 'react'
+import { DEFAULT_TOP_APPS_COUNT, TOP_MENU_DIVIDER_ID } from '../../constants.js'
 
 const arraysEqual = (a, b) =>
     a.length === b.length && a.every((value, index) => value === b[index])
@@ -19,10 +20,19 @@ const initialState = {
 function reducer(state, action) {
     switch (action.type) {
         case 'INIT': {
+            // The divider is spliced in as a real array member — see
+            // constants.js — so dragging a real app across it can move it,
+            // instead of the top/other split being a separate fixed count.
+            const dividerIndex = Math.min(
+                DEFAULT_TOP_APPS_COUNT,
+                action.order.length
+            )
+            const order = [...action.order]
+            order.splice(dividerIndex, 0, TOP_MENU_DIVIDER_ID)
             return {
                 status: 'ready',
-                order: [...action.order],
-                baseline: [...action.order],
+                order,
+                baseline: [...order],
             }
         }
 
@@ -35,9 +45,17 @@ function reducer(state, action) {
             if (fromIndex === -1 || toIndex === -1 || fromIndex === toIndex) {
                 return state
             }
+            const nextOrder = moveItem(state.order, fromIndex, toIndex)
+            // At least one real app must stay pinned to the top menu — the
+            // Global Shell always shows something in its top bar. Refuse the
+            // move rather than allowing an empty group and validating after
+            // the fact.
+            if (nextOrder.indexOf(TOP_MENU_DIVIDER_ID) === 0) {
+                return state
+            }
             return {
                 ...state,
-                order: moveItem(state.order, fromIndex, toIndex),
+                order: nextOrder,
             }
         }
 
@@ -55,12 +73,17 @@ function reducer(state, action) {
 }
 
 /**
- * Owns the single ordered list of app names shown in the left zone. Ranking
- * is purely array position: `POST /api/menu` replaces the whole list, and the
- * Command Palette shows the first N of it.
- *
- * The "top apps count" deliberately lives outside this hook — it cannot be
- * persisted yet (see constants.js), so it must not make the form dirty.
+ * Owns the single ordered list of app names shown in the left zone, plus the
+ * "Top apps" / "Other apps" divider mixed into that same array (see
+ * TOP_MENU_DIVIDER_ID in constants.js) — dragging a real app across it moves
+ * it exactly like reordering. Ranking is purely array position: `POST
+ * /api/menu` replaces the whole list, and the Command Palette shows the
+ * first N of it — N is still the Shell's own hard-coded constant, not
+ * whatever the divider's position implies, since there is nowhere yet to
+ * persist a per-user count (see constants.js). Moving the divider is
+ * therefore still a prototype affordance: it changes what gets saved (which
+ * apps end up in which relative positions) but not, on its own, how many of
+ * them the real Shell will actually show.
  */
 export const useMenuOrder = () => {
     const [state, dispatch] = useReducer(reducer, initialState)

@@ -1,10 +1,12 @@
 // The Global Shell's Command Palette (DHIS2 2.42+) renders a grid of the
-// user's first 8 apps — see https://dhis2.atlassian.net/browse/DHIS2-19124.
-// That number is NOT exposed by any API today; it is a constant inside the
-// Shell itself. Until the Shell reads a user preference instead of hard-coding
-// it, the count control on this page is a prototype: it re-slices the preview
-// locally, but there is nowhere to persist the choice.
+// user's top apps — see https://dhis2.atlassian.net/browse/DHIS2-19124. This
+// is only the *initial* boundary on first load; from then on it's genuinely
+// dynamic — see TOP_MENU_DIVIDER_ID below.
 export const DEFAULT_TOP_APPS_COUNT = 8
 
-// Selectable values for the "how many top apps" prototype control.
-export const TOP_APPS_COUNT_OPTIONS = [4, 8, 12, 16]
+// A sentinel id spliced into useMenuOrder's `order` array, marking the
+// boundary between "Top apps" and "Other apps". It is a real member of the
+// sortable array (not external state) so that dragging a real app across it
+// naturally grows or shrinks the top group as a side effect of the array
+// splice — see useMenuOrder.js and AppList.jsx.
+export const TOP_MENU_DIVIDER_ID = '__top-menu-divider__'

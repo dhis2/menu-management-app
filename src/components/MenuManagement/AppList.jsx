@@ -1,61 +1,69 @@
-import { Card } from '@dhis2/ui'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import PropTypes from 'prop-types'
-import React, { Fragment } from 'react'
+import React from 'react'
+import { TOP_MENU_DIVIDER_ID } from '../../constants.js'
 import i18n from '../../locales/index.js'
 import classes from './AppList.module.css'
 import AppRow from './AppRow.jsx'
-import CutLine from './CutLine.jsx'
+import SectionHeading from './SectionHeading.jsx'
 
 /**
  * The left zone: the one ordered list that everything else derives from.
- * The cut line is injected after the last app that still fits in the Top
- * apps grid.
+ * "Top apps" and "Other apps" are plain group labels inline in the list —
+ * "Other apps" is the divider, a real (non-draggable) member of `order`, so
+ * dragging a real app across it grows or shrinks the top group as a side
+ * effect of the reorder, the same way moving past any other item works.
+ * Only the <ol> itself scrolls internally (see AppList.module.css); the
+ * heading and hint stay in view. Rendered as a plain panel inside the
+ * shared card (see MenuManagement.jsx), not its own separate Card.
  */
-const AppList = ({ order, appsByName, topAppsCount }) => {
-    const showCutLine = order.length > topAppsCount
+const AppList = ({ order, appsByName }) => {
+    const realTotal = order.length - 1
+    let realIndex = 0
 
     return (
-        <Card>
-            <div className={classes.zone}>
-                <div className={classes.header}>
-                    <h2 className={classes.heading}>{i18n.t('All apps')}</h2>
-                    <span className={classes.count}>
-                        {i18n.t('{{total}} apps', { total: order.length })}
-                    </span>
-                </div>
-                <p className={classes.hint}>
-                    {i18n.t('Drag to reorder, or use your keyboard.')}
-                </p>
+        <div className={classes.zone}>
+            <h2 className={classes.heading}>{i18n.t('All apps')}</h2>
 
-                <SortableContext
-                    items={order}
-                    strategy={verticalListSortingStrategy}
-                >
-                    <ol className={classes.list}>
-                        {order.map((name, index) => (
-                            <Fragment key={name}>
-                                <AppRow
-                                    app={appsByName[name]}
-                                    index={index}
-                                    total={order.length}
-                                />
-                                {showCutLine && index === topAppsCount - 1 && (
-                                    <CutLine />
-                                )}
-                            </Fragment>
-                        ))}
-                    </ol>
-                </SortableContext>
-            </div>
-        </Card>
+            <p className={classes.hint}>
+                {i18n.t(
+                    'Drag apps to reorder them, or to move them between groups.'
+                )}
+            </p>
+
+            <SortableContext
+                items={order}
+                strategy={verticalListSortingStrategy}
+            >
+                <ol className={classes.list}>
+                    <SectionHeading>{i18n.t('Top apps')}</SectionHeading>
+                    {order.map((name) => {
+                        if (name === TOP_MENU_DIVIDER_ID) {
+                            return (
+                                <SectionHeading key={name}>
+                                    {i18n.t('Other apps')}
+                                </SectionHeading>
+                            )
+                        }
+                        const index = realIndex++
+                        return (
+                            <AppRow
+                                key={name}
+                                app={appsByName[name]}
+                                index={index}
+                                total={realTotal}
+                            />
+                        )
+                    })}
+                </ol>
+            </SortableContext>
+        </div>
     )
 }
 
 AppList.propTypes = {
     appsByName: PropTypes.object.isRequired,
     order: PropTypes.arrayOf(PropTypes.string).isRequired,
-    topAppsCount: PropTypes.number.isRequired,
 }
 
 export default AppList

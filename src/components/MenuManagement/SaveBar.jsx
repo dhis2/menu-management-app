@@ -1,26 +1,16 @@
-import { Button, ButtonStrip, IconWarningFilled16 } from '@dhis2/ui'
+import { Button, ButtonStrip } from '@dhis2/ui'
 import PropTypes from 'prop-types'
 import React from 'react'
 import i18n from '../../locales/index.js'
 import classes from './SaveBar.module.css'
 
 /**
- * A persistent sticky footer rather than a banner that appears on the first
- * change: the list is long enough to scroll, and controls that move as you
- * work are harder to aim at than controls that are always in the same place.
+ * Persistent sticky footer for actions only. The unsaved-changes status
+ * message lives in UnsavedChangesBanner, directly under the page header, so
+ * it stays visible without needing the buttons to scroll along with it.
  */
 const SaveBar = ({ isDirty, saving, onSave, onReset }) => (
     <div className={classes.bar}>
-        <span className={classes.status}>
-            {isDirty && (
-                <>
-                    <span className={classes.statusIcon} aria-hidden="true">
-                        <IconWarningFilled16 />
-                    </span>
-                    {i18n.t('Unsaved changes')}
-                </>
-            )}
-        </span>
         <ButtonStrip end>
             <Button
                 secondary
