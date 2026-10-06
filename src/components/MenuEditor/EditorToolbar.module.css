@@ -1,0 +1,33 @@
+/* A plain white @dhis2-ui/card look (white + elevation shadow, see card.js)
+   blended into the page here, since the page itself is also plain white —
+   the shadow alone was a weak, easy-to-miss cue, and this bar now spans the
+   full editorContainer width while the content below it stays a narrower
+   ~600px column (see MenuEditor.module.css), which read as an odd width
+   mismatch on top of that. A soft grey050 tint (not pure white) gives it
+   its own "surface" independent of the page background, and reads more
+   like a dedicated toolbar strip than a floating card that happens to be
+   full width. Shown only while dirty (see EditorToolbar.jsx), so there is
+   no separate "clean" look to reconcile it with. */
+.toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacers-dp16);
+    gap: var(--spacers-dp16);
+    padding: var(--spacers-dp8) var(--spacers-dp12);
+    border-radius: 3px;
+    background: var(--colors-grey050);
+    box-shadow: var(--elevations-e100);
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: var(--spacers-dp8);
+    color: var(--colors-grey900);
+    font-size: 14px;
+    line-height: 20px;
+}

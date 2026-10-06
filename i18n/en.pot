@@ -5,38 +5,20 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2026-09-28T10:01:38.868Z\n"
-"PO-Revision-Date: 2026-09-28T10:01:38.868Z\n"
+"POT-Creation-Date: 2026-10-05T11:46:58.230Z\n"
+"PO-Revision-Date: 2026-10-05T11:46:58.231Z\n"
+
+msgid "Changes here only affect your own menu."
+msgstr "Changes here only affect your own menu."
 
 msgid "Menu Management"
 msgstr "Menu Management"
 
-msgid "Set the order of your apps. The top ones are pinned to your top menu."
-msgstr "Set the order of your apps. The top ones are pinned to your top menu."
+msgid "Drag apps to reorder them, or move them between groups."
+msgstr "Drag apps to reorder them, or move them between groups."
 
-msgid "All apps"
-msgstr "All apps"
-
-msgid "Drag apps to reorder them, or to move them between groups."
-msgstr "Drag apps to reorder them, or to move them between groups."
-
-msgid "Top apps"
-msgstr "Top apps"
-
-msgid "Other apps"
-msgstr "Other apps"
-
-msgid "sortable app"
-msgstr "sortable app"
-
-msgid "Reorder {{name}}. Currently position {{position}} of {{total}}"
-msgstr "Reorder {{name}}. Currently position {{position}} of {{total}}"
-
-msgid "Apps menu saved."
-msgstr "Apps menu saved."
-
-msgid "Something went wrong whilst loading your apps"
-msgstr "Something went wrong whilst loading your apps"
+msgid "You have unsaved changes"
+msgstr "You have unsaved changes"
 
 msgid "Discard changes"
 msgstr "Discard changes"
@@ -46,6 +28,30 @@ msgstr "Saving…"
 
 msgid "Save"
 msgstr "Save"
+
+msgid "Apps menu saved."
+msgstr "Apps menu saved."
+
+msgid "Top apps"
+msgstr "Top apps"
+
+msgid "All other apps"
+msgstr "All other apps"
+
+msgid "Something went wrong whilst loading your apps"
+msgstr "Something went wrong whilst loading your apps"
+
+msgid "sortable app"
+msgstr "sortable app"
+
+msgid "Reorder {{name}}. Currently position {{position}} of {{total}}"
+msgstr "Reorder {{name}}. Currently position {{position}} of {{total}}"
+
+msgid "All apps"
+msgstr "All apps"
+
+msgid "Other apps"
+msgstr "Other apps"
 
 msgid "Top menu preview"
 msgstr "Top menu preview"

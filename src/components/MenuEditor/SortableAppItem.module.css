@@ -1,0 +1,70 @@
+.item {
+    list-style: none;
+}
+
+.isDragging {
+    opacity: 0.4;
+}
+
+.tile {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: none;
+    cursor: grab;
+    font: inherit;
+    touch-action: none;
+    flex-direction: column;
+    height: 100%;
+    gap: var(--spacers-dp8);
+    padding: var(--spacers-dp12) var(--spacers-dp4);
+}
+
+/* Background only — no border change, so hovering doesn't shift the
+   item's box by a pixel of border width. grey200 rather than grey100/050:
+   with no border left to reinforce it, the background tint is now the only
+   hover cue, sitting on a plain white plate — grey100 (#f8f9fa) read as too
+   close to white to register as feedback; grey200 (#f3f5f7) is still a
+   quiet, neutral tint but reads clearly as "something changed" on its own. */
+.tile:hover {
+    background: var(--colors-grey200);
+}
+
+.tile:focus-visible {
+    outline: 2px solid var(--theme-focus);
+    outline-offset: -1px;
+}
+
+.tile:active {
+    cursor: grabbing;
+}
+
+.tile .icon {
+    width: 48px;
+    height: 48px;
+    pointer-events: none;
+}
+
+.tile .label {
+    color: var(--colors-grey800);
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+/* Floating copy shown in the DragOverlay — not part of the sortable list,
+   so no hover/focus states, just a lifted version of the shape. Written as
+   the compound .overlay.tile (not a bare .overlay) so these declarations
+   always outrank .tile's own background:none/border, on specificity rather
+   than depending on this being the last rule in the file. */
+.overlay.tile {
+    border-color: var(--colors-grey300);
+    background: var(--colors-white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+    cursor: grabbing;
+    width: 140px;
+}

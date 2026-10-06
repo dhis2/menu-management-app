@@ -14,8 +14,8 @@ import SectionHeading from './SectionHeading.jsx'
  * dragging a real app across it grows or shrinks the top group as a side
  * effect of the reorder, the same way moving past any other item works.
  * Only the <ol> itself scrolls internally (see AppList.module.css); the
- * heading and hint stay in view. Rendered as a plain panel inside the
- * shared card (see MenuManagement.jsx), not its own separate Card.
+ * heading stays in view. Rendered as a plain panel inside the shared card
+ * (see MenuManagement.jsx), not its own separate Card.
  */
 const AppList = ({ order, appsByName }) => {
     const realTotal = order.length - 1
@@ -27,7 +27,7 @@ const AppList = ({ order, appsByName }) => {
 
             <p className={classes.hint}>
                 {i18n.t(
-                    'Drag apps to reorder them, or to move them between groups.'
+                    'Drag apps to reorder them, or move them between groups.'
                 )}
             </p>
 

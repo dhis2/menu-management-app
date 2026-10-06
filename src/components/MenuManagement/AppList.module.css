@@ -1,7 +1,7 @@
 /* Stretched to match the row height set by .zones (MenuManagement.module.css)
    and, above 900px, further constrained by the card's own flex height —
-   flex column so only .list scrolls internally while everything above it
-   (heading, hint) stays in view. min-height: 0 overrides this grid item's
+   flex column so only .list scrolls internally while the heading and hint
+   above it stay in view. min-height: 0 overrides this grid item's
    automatic minimum size, which otherwise defaults to its content's
    min-content height (the full unscrolled list) and forces the row — and
    everything above it up to .container — to grow to fit, overflowing past
@@ -24,7 +24,7 @@
 }
 
 .hint {
-    margin: 0 0 var(--spacers-dp16);
+    margin: 0 0 var(--spacers-dp8);
     color: var(--colors-grey800);
     font-size: 14px;
     line-height: 20px;

@@ -25,7 +25,23 @@
     flex-direction: column;
     box-sizing: border-box;
     height: 100%;
-    max-width: 1120px;
+    max-width: 1040px;
+    margin: auto;
+    padding: var(--spacers-dp32) var(--spacers-dp24);
+}
+
+/* Views 2/3's own container, sized for their content instead of sharing
+   .container's 1040px — that width is what V1's two-column layout (list +
+   preview) needs, but views 2/3 only ever show a single ~600px-wide column
+   (see MenuEditor.module.css's .plate/.heading), so framing it in the same
+   1040px would just leave big empty margins on both sides. A separate,
+   narrower container instead of forcing both to match. */
+.editorContainer {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 100%;
+    max-width: 680px;
     margin: auto;
     padding: var(--spacers-dp32) var(--spacers-dp24);
 }
@@ -45,4 +61,27 @@
     color: var(--colors-grey700);
     font-size: 16px;
     line-height: 24px;
+}
+
+/* Demo views 2 and 3 use ordinary page scroll (no internal scroll regions),
+   so the container grows with its content instead of capping at 100%. */
+.containerScroll {
+    height: auto;
+    min-height: 100%;
+    padding-bottom: 96px;
+}
+
+.hint {
+    display: inline-flex;
+    align-items: center;
+    margin-inline-start: var(--spacers-dp8);
+    vertical-align: middle;
+    cursor: help;
+}
+
+/* V1 only: without the old description paragraph below it (removed — see
+   AppList.jsx, where that text now lives), the title's own small
+   margin-bottom left almost no gap before the card below it. */
+.header {
+    margin-bottom: var(--spacers-dp24);
 }

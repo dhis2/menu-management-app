@@ -1,4 +1,4 @@
-import { NoticeBox } from '@dhis2/ui'
+import { NoticeBox, IconInfoFilled16, colors } from '@dhis2/ui'
 import PropTypes from 'prop-types'
 import React from 'react'
 import i18n from '../../locales/index.js'
@@ -23,7 +23,10 @@ const UnsavedChangesBanner = ({ isDirty }) => {
 
     return (
         <div className={classes.wrap}>
-            <NoticeBox warning dataTest="menu-management-unsaved-banner">
+            <NoticeBox
+                icon={<IconInfoFilled16 color={colors.blue900} />}
+                dataTest="menu-management-unsaved-banner"
+            >
                 {i18n.t('You have unsaved changes.')}
             </NoticeBox>
         </div>

@@ -5,7 +5,7 @@
    its own content). */
 .zones {
     display: grid;
-    grid-template-columns: 1.15fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 .dragOverlay {
