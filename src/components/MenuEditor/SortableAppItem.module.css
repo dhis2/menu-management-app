@@ -46,11 +46,29 @@
     background: var(--colors-grey200);
 }
 
+/* The dimmed placeholder left behind while its copy is in the DragOverlay
+   must not also take the hover tint: a grey fill under 40% opacity just
+   reads as a dirty smudge on the plate. Declared after every :hover rule
+   below it would be needed, so it uses the compound .isDragging selector
+   (and !important-free specificity: 3 classes beats the 2-class hovers). */
+.isDragging .tile:hover,
+.isDragging .row:hover,
+.isDragging .outlined.tile:hover,
+.isDragging .outlined.row:hover {
+    background: none;
+}
+
+.isDragging .filled.tile:hover,
+.isDragging .filled.row:hover {
+    background: var(--colors-white);
+    box-shadow: none;
+}
+
 /* variant="filled": white cards on a grey200 plate (see MenuEditor's
    .plateFilled) — the fill contrast marks each card instead of a border.
    Hover can't tint a white card darker without fighting the plate's grey,
-   so it lifts it with the e100 elevation instead: the first step towards the
-   DragOverlay's shadow, and a hint that the card can be picked up. The
+   so it lifts it with the e200 elevation instead: the step before the
+   DragOverlay's e300 shadow, and a hint that the card can be picked up. The
    compound :hover selector outranks .tile:hover/.row:hover. */
 .filled.tile,
 .filled.row {
@@ -60,7 +78,7 @@
 .filled.tile:hover,
 .filled.row:hover {
     background: var(--colors-white);
-    box-shadow: var(--elevations-e100);
+    box-shadow: var(--elevations-e200, 0 2px 6px rgba(0, 0, 0, 0.12));
 }
 
 /* variant="outlined": a lighter grey100 tint. Here the resting border
@@ -135,8 +153,18 @@
 .overlay.tile {
     border-color: var(--colors-grey300);
     background: var(--colors-white);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+    box-shadow: var(--elevations-e300, 0 4px 12px rgba(0, 0, 0, 0.16));
     cursor: grabbing;
+}
+
+/* The copy always sits under the pointer, so without this every :hover rule
+   above (some more specific than .overlay.tile, e.g. .filled.tile:hover)
+   would apply to it and swap its elevation — and flicker whenever hover is
+   lost for a frame as it crosses between groups and changes shape. Nothing
+   in the overlay needs to receive the pointer: dnd-kit tracks it on the
+   document. */
+.overlay {
+    pointer-events: none;
 }
 
 /* Horizontal list row for All other apps in the main editor. Same drag target as .tile
@@ -193,7 +221,7 @@
 .overlay.row {
     border-color: var(--colors-grey300);
     background: var(--colors-white);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+    box-shadow: var(--elevations-e300, 0 4px 12px rgba(0, 0, 0, 0.16));
     cursor: grabbing;
 }
 
