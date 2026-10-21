@@ -2,30 +2,19 @@
     margin-bottom: var(--spacers-dp24);
 }
 
-/* Extra breathing room between the two separate plates, on top of
-   .section's own margin — V2 renders two plates with the heading outside
-   .plate, so it keeps the larger gap. */
-.sectionGap {
-    margin-bottom: var(--spacers-dp32);
-}
-
-/* V3 nests each heading inside its own .plate card, so the cards already
-   read as visually separate groups — a smaller gap than V2's is enough
-   between them. */
-.sectionGapCombined {
-    margin-bottom: var(--spacers-dp12);
+/* variant="filled": the grey plates sit 16px apart — the same as the
+   plate's own inset — instead of .section's 24px. */
+.sectionTight {
+    margin-bottom: var(--spacers-dp16);
 }
 
 /* "Top apps" and "All other apps" are the page's actual section titles here
-   (unlike V1, where they're secondary group labels inside one combined
-   list) — sized like DHIS2's own section-title convention instead
-   (metadata-management-app's StandardFormSectionTitle: 20px/500/grey800),
-   not the smaller 14px inline group-label style that fits V1's nested
-   labels. V2 sits this above .plate, outside it, matching the DHIS2
-   convention of keeping a section's title outside its content box; V3 uses
-   the same class as .plate's first child instead — the card there is each
-   group's own container rather than a shared one, so the heading reads as
-   that card's title. Either way no max-width of its own — it fills the same
+   (unlike the list + preview view, where they're secondary group labels
+   inside one combined list) — sized like DHIS2's own section-title
+   convention instead (metadata-management-app's StandardFormSectionTitle:
+   20px/500/grey800), not the smaller 14px inline group-label style. It sits
+   above .plate, outside it, matching the DHIS2 convention of keeping a
+   section's title outside its content box. No max-width of its own — it fills the same
    width as .editorContainer's title/description (see App.module.css) and
    .plate, rather than capping to its own narrower measure and ending up
    indented relative to them. */
@@ -36,6 +25,14 @@
     font-size: 20px;
     font-weight: 500;
     line-height: 24px;
+}
+
+/* variants "outlined" and "filled": the title sits inside .plate, on the same left edge as
+   the cards below it (the plate's own padding), with a little more room
+   underneath to separate it from the first row of bordered cards. */
+.headingInside {
+    margin-bottom: var(--spacers-dp12);
+    padding: 0;
 }
 
 /* Same recipe as @dhis2-ui/card (see card.js): white, 3px radius, an
@@ -54,6 +51,15 @@
     box-shadow: var(--elevations-e100);
 }
 
+/* variant="filled": a flat grey200 container instead of the white card, so
+   the white app cards inside stand out by fill alone (see .filled in
+   SortableAppItem.module.css). No shadow: a raised grey surface would
+   compete with the cards for being "the thing you pick up". */
+.plateFilled {
+    background: var(--colors-grey200);
+    box-shadow: none;
+}
+
 /* Shared by the Top apps and All other apps grids, so both line up on the
    same 4-column sizing. Fixed column count rather than auto-fill: grows
    with the viewport up to .editorContainer's max-width (see App.module.css),
@@ -63,6 +69,9 @@
     margin: 0;
     min-height: 96px;
     padding: 0;
+    /* The same 4px as between the rows of .listCards, so cards sit the
+       same distance apart in both groups. Kept for both variants so the grid
+       doesn't change size between them. */
     gap: var(--spacers-dp4);
     grid-template-columns: repeat(4, 1fr);
     list-style: none;
@@ -72,4 +81,37 @@
     .grid {
         grid-template-columns: repeat(2, 1fr);
     }
+}
+
+/* All other apps is a vertical list. */
+.list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    min-height: 48px;
+    padding: 0;
+    list-style: none;
+}
+
+/* variants "outlined" and "filled": each row is its own card, so rows need
+   a little air between them — or neighbouring borders merge into a double
+   line, and white rows merge into one white block. Same 4px as .grid's gap.
+   Spacing scale for these variants, smallest to largest: 4px between cards,
+   12px card inset and title-to-cards, 16px plate inset, then between
+   plates 24px ("outlined") or 16px ("filled"). */
+.listCards {
+    gap: var(--spacers-dp4);
+}
+
+/* Visually hidden live region for announcing moves made by double-click. */
+.srOnly {
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
 }

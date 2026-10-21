@@ -17,20 +17,58 @@
     cursor: grab;
     font: inherit;
     touch-action: none;
+    user-select: none;
+    position: relative;
     flex-direction: column;
     height: 100%;
     gap: var(--spacers-dp8);
-    padding: var(--spacers-dp12) var(--spacers-dp4);
+    /* 12px all round: the same horizontal inset as .row, so text and grip
+       sit the same distance from the card edge in both groups. */
+    padding: var(--spacers-dp12);
 }
 
-/* Background only — no border change, so hovering doesn't shift the
-   item's box by a pixel of border width. grey200 rather than grey100/050:
-   with no border left to reinforce it, the background tint is now the only
-   hover cue, sitting on a plain white plate — grey100 (#f8f9fa) read as too
+/* variant="outlined": a visible card edge at rest. The corner grip needs a
+   card to belong to, or it reads as floating in the air. A border rather
+   than a fill, so the items stay light on the white plate and grey200
+   remains free as the hover cue. Same grey300 border as the DragOverlay
+   copy, so picking an item up just adds the shadow to the card that was
+   already there. Rows get it too, so both groups speak the same language. */
+.outlined.tile,
+.outlined.row {
+    border-color: var(--colors-grey300);
+}
+
+/* Background only — the border keeps its colour, so hovering is one clear
+   change. grey200 rather than grey100/050: grey100 (#f8f9fa) read as too
    close to white to register as feedback; grey200 (#f3f5f7) is still a
-   quiet, neutral tint but reads clearly as "something changed" on its own. */
+   quiet, neutral tint but reads clearly as "something changed". */
 .tile:hover {
     background: var(--colors-grey200);
+}
+
+/* variant="filled": white cards on a grey200 plate (see MenuEditor's
+   .plateFilled) — the fill contrast marks each card instead of a border.
+   Hover can't tint a white card darker without fighting the plate's grey,
+   so it lifts it with the e100 elevation instead: the first step towards the
+   DragOverlay's shadow, and a hint that the card can be picked up. The
+   compound :hover selector outranks .tile:hover/.row:hover. */
+.filled.tile,
+.filled.row {
+    background: var(--colors-white);
+}
+
+.filled.tile:hover,
+.filled.row:hover {
+    background: var(--colors-white);
+    box-shadow: var(--elevations-e100);
+}
+
+/* variant="outlined": a lighter grey100 tint. Here the resting border
+   already marks each card, so hover needs less fill to register. Compound
+   selectors outrank .tile:hover/.row:hover on specificity. */
+.outlined.tile:hover,
+.outlined.row:hover {
+    background: var(--colors-grey100);
 }
 
 .tile:focus-visible {
@@ -56,7 +94,40 @@
     overflow-wrap: anywhere;
 }
 
-/* Floating copy shown in the DragOverlay — not part of the sortable list,
+/* Drag grip, same colours as .handle in AppRow.module.css. It reacts to the
+   hover of the whole tile/row, not just of the icon itself. */
+.handle {
+    display: flex;
+    flex: 0 0 auto;
+    color: var(--colors-grey500);
+    pointer-events: none;
+}
+
+.tile:hover .handle,
+.row:hover .handle,
+.tile:focus-visible .handle,
+.row:focus-visible .handle {
+    color: var(--colors-grey800);
+}
+
+/* In the tile's top-left corner, the usual spot for a card's own controls,
+   so the centred icon + label stay symmetric. Pinned beside the icon instead,
+   it sat ~30px out in the tile's empty side space and, now always visible,
+   tipped every tile off balance. Always shown, as in the list: reordering is
+   the whole point of this screen, so the grip has to be there at a glance,
+   not only once hover has already found it. It stays quiet through contrast
+   (grey500 at rest, grey800 on hover) instead. Inset 12px, the tile's own
+   padding: level with the top of the app icon, and as far from the left
+   edge as the grip in a .row. */
+.tile .handle {
+    position: absolute;
+    top: var(--spacers-dp12);
+    left: var(--spacers-dp12);
+}
+
+/* Floating copy shown in the DragOverlay. Its wrapper's width/height are set
+   by MenuEditor to the shape of the group the item is currently over, and the
+   card fills that wrapper (width/height: 100% on .tile/.row). — not part of the sortable list,
    so no hover/focus states, just a lifted version of the shape. Written as
    the compound .overlay.tile (not a bare .overlay) so these declarations
    always outrank .tile's own background:none/border, on specificity rather
@@ -66,5 +137,69 @@
     background: var(--colors-white);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
     cursor: grabbing;
-    width: 140px;
+}
+
+/* Horizontal list row for All other apps in the main editor. Same drag target as .tile
+   (the whole row, not a separate handle) so the two layouts stay one
+   component. */
+.row {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: none;
+    cursor: grab;
+    font: inherit;
+    touch-action: none;
+    user-select: none;
+    flex-direction: row;
+    gap: var(--spacers-dp12);
+    padding: var(--spacers-dp8) var(--spacers-dp12);
+    text-align: left;
+}
+
+.row:hover {
+    background: var(--colors-grey200);
+}
+
+.row:focus-visible {
+    outline: 2px solid var(--theme-focus);
+    outline-offset: -1px;
+}
+
+.row:active {
+    cursor: grabbing;
+}
+
+.row .icon {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+}
+
+.row .label {
+    overflow: hidden;
+    color: var(--colors-grey900);
+    font-size: 14px;
+    line-height: 20px;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.overlay.row {
+    border-color: var(--colors-grey300);
+    background: var(--colors-white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+    cursor: grabbing;
+}
+
+/* variant="filled": the resting cards have no border, so the lifted copy
+   doesn't grow one either — the shadow alone does the lifting. */
+.filled.overlay.tile,
+.filled.overlay.row {
+    border-color: transparent;
 }

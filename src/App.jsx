@@ -6,10 +6,19 @@ import MenuEditor from './components/MenuEditor/MenuEditor.jsx'
 import MenuManagement from './components/MenuManagement/MenuManagement.jsx'
 import i18n from './locales/index.js'
 
-// Demo only: ?view=1 is the current editor/preview layout, ?view=2 is the
-// single editable view prototype from team feedback, ?view=3 is the same
-// prototype with both groups inside one shared container instead of two.
-const VIEWS = ['1', '2', '3']
+// Demo only. Values match the labels in DemoViewSwitcher. ?view=1 (the
+// default) is the main editor — Top apps as a grid, All other apps as a list
+// — with grips on white app cards set against grey plates. ?view=1.1 has the
+// same grips, but card borders on white plates instead. ?view=2 has no grips
+// or borders at all. ?view=3 is the old list + preview layout. Anything else
+// opens the main editor.
+const VIEWS = ['1', '1.1', '2', '3']
+
+const EDITOR_VARIANTS = {
+    1: 'filled',
+    1.1: 'outlined',
+    2: 'plain',
+}
 
 const readView = () => {
     const view = new URLSearchParams(window.location.search).get('view')
@@ -40,17 +49,7 @@ const App = () => {
     return (
         <>
             <CssVariables spacers colors theme elevations />
-            {view === '1' ? (
-                <div className={classes.container}>
-                    <header className={classes.header}>
-                        <h1 className={classes.title}>
-                            {i18n.t('Menu Management')}
-                            <TitleHint />
-                        </h1>
-                    </header>
-                    <MenuManagement />
-                </div>
-            ) : (
+            {EDITOR_VARIANTS[view] ? (
                 <div
                     className={`${classes.editorContainer} ${classes.containerScroll}`}
                 >
@@ -65,10 +64,17 @@ const App = () => {
                             )}
                         </p>
                     </header>
-                    <MenuEditor
-                        key={view}
-                        variant={view === '3' ? 'combined' : 'split'}
-                    />
+                    <MenuEditor variant={EDITOR_VARIANTS[view]} />
+                </div>
+            ) : (
+                <div className={classes.container}>
+                    <header className={classes.header}>
+                        <h1 className={classes.title}>
+                            {i18n.t('Menu Management')}
+                            <TitleHint />
+                        </h1>
+                    </header>
+                    <MenuManagement />
                 </div>
             )}
             <DemoViewSwitcher view={view} onChange={handleViewChange} />

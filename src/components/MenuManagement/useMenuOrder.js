@@ -59,6 +59,10 @@ function reducer(state, action) {
             }
         }
 
+        case 'RESTORE': {
+            return { ...state, order: [...action.order] }
+        }
+
         case 'RESET': {
             return { ...state, order: [...state.baseline] }
         }
@@ -96,6 +100,10 @@ export const useMenuOrder = () => {
         []
     )
 
+    const restore = useCallback(
+        (order) => dispatch({ type: 'RESTORE', order }),
+        []
+    )
     const reset = useCallback(() => dispatch({ type: 'RESET' }), [])
     const commit = useCallback(() => dispatch({ type: 'COMMIT' }), [])
 
@@ -110,6 +118,7 @@ export const useMenuOrder = () => {
         isDirty,
         init,
         reorder,
+        restore,
         reset,
         commit,
     }

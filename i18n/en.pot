@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2026-10-05T11:46:58.230Z\n"
-"PO-Revision-Date: 2026-10-05T11:46:58.231Z\n"
+"POT-Creation-Date: 2026-10-21T09:17:41.198Z\n"
+"PO-Revision-Date: 2026-10-21T09:17:41.198Z\n"
 
 msgid "Changes here only affect your own menu."
 msgstr "Changes here only affect your own menu."
@@ -37,6 +37,12 @@ msgstr "Top apps"
 
 msgid "All other apps"
 msgstr "All other apps"
+
+msgid "{{name}} moved to All other apps."
+msgstr "{{name}} moved to All other apps."
+
+msgid "{{name}} moved to Top apps."
+msgstr "{{name}} moved to Top apps."
 
 msgid "Something went wrong whilst loading your apps"
 msgstr "Something went wrong whilst loading your apps"

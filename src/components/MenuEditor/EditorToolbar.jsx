@@ -1,4 +1,4 @@
-import { Button, ButtonStrip, IconInfo16, colors } from '@dhis2/ui'
+import { Button, ButtonStrip } from '@dhis2/ui'
 import PropTypes from 'prop-types'
 import React from 'react'
 import i18n from '../../locales/index.js'
@@ -8,6 +8,10 @@ import classes from './EditorToolbar.module.css'
  * Save/Discard toolbar above the editor. Only rendered while there are
  * unsaved changes — its mere presence is the dirty indicator, instead of a
  * separate warning banner or an always-on bar with a tinted "dirty" state.
+ * The status is plain text with no icon: unsaved changes are the normal
+ * working state of an editor, not a warning, and a yellow icon on every
+ * first drag would compete with the Save button for attention. Leaving with
+ * changes is already guarded by MenuEditor's beforeunload prompt.
  */
 const EditorToolbar = ({ isDirty, saving, onSave, onReset }) => {
     if (!isDirty) {
@@ -17,7 +21,6 @@ const EditorToolbar = ({ isDirty, saving, onSave, onReset }) => {
     return (
         <div className={classes.toolbar}>
             <span className={classes.status} aria-live="polite">
-                <IconInfo16 color={colors.grey700} />
                 {i18n.t('You have unsaved changes')}
             </span>
             <ButtonStrip end>

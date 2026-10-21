@@ -12,9 +12,10 @@ const DemoViewSwitcher = ({ view, onChange }) => (
         <span className={classes.label}>Demo</span>
         <SegmentedControl
             options={[
-                { label: 'V1 List', value: '1' },
-                { label: 'V2 Grids', value: '2' },
-                { label: 'V3 Grids alt', value: '3' },
+                { label: 'V1', value: '1' },
+                { label: 'V1.1 (outlined)', value: '1.1' },
+                { label: 'V2 (simple)', value: '2' },
+                { label: 'V3 (old)', value: '3' },
             ]}
             selected={view}
             onChange={({ value }) => onChange(value)}
