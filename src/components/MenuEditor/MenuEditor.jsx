@@ -199,10 +199,13 @@ const MenuEditor = ({ variant = 'plain' }) => {
     const [saving, setSaving] = useState(false)
     const [activeId, setActiveId] = useState(null)
     const [overlaySize, setOverlaySize] = useState(null)
-    // The toolbar appearing on the first change pushes the whole page down.
-    // Mid-drag that moves every item out from under the cursor/overlay, so
-    // its visibility is frozen for the length of a drag.
+    // The toolbar opening on the first change pushes the page down. Mid-drag
+    // that moves every item out from under the cursor/overlay, so its
+    // visibility is frozen for the length of a drag.
     const [toolbarFrozen, setToolbarFrozen] = useState(null)
+    // Keyboard drags give the DragOverlay copy a focus ring, see
+    // SortableAppItem.module.css's .overlay.keyboard.
+    const [keyboardDrag, setKeyboardDrag] = useState(false)
     const [announcement, setAnnouncement] = useState('')
     // Set when a double-click moved an app into the other group's <ol>: the
     // item remounts there, so focus has to be put back on it afterwards.
@@ -387,12 +390,13 @@ const MenuEditor = ({ variant = 'plain' }) => {
     )
 
     const handleDragStart = useCallback(
-        ({ active }) => {
+        ({ active, activatorEvent }) => {
             crossStateRef.current = null
             forcedOverRef.current = null
             justCrossedRef.current = false
             dragStartOrderRef.current = orderRef.current
             setToolbarFrozen(isDirty)
+            setKeyboardDrag(activatorEvent?.type === 'keydown')
             setActiveId(active.id)
         },
         [isDirty]
@@ -425,6 +429,7 @@ const MenuEditor = ({ variant = 'plain' }) => {
         ({ active, over, activatorEvent }) => {
             setActiveId(null)
             setToolbarFrozen(null)
+            setKeyboardDrag(false)
             const justEntered = crossStateRef.current === 'fresh'
             crossStateRef.current = null
             // Only reorder within a group. The move between groups was
@@ -450,6 +455,7 @@ const MenuEditor = ({ variant = 'plain' }) => {
     const handleDragCancel = useCallback(() => {
         setActiveId(null)
         setToolbarFrozen(null)
+        setKeyboardDrag(false)
         // Cross-group moves were applied live, so undo them too.
         restore(dragStartOrderRef.current)
     }, [restore])
@@ -637,6 +643,7 @@ const MenuEditor = ({ variant = 'plain' }) => {
                             itemClasses.overlay,
                             activeIsRow ? itemClasses.row : itemClasses.tile,
                             cards ? itemClasses[variant] : '',
+                            keyboardDrag ? itemClasses.keyboard : '',
                         ]
                             .filter(Boolean)
                             .join(' ')}

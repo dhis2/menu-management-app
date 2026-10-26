@@ -8,14 +8,54 @@
    like a dedicated toolbar strip than a floating card that happens to be
    full width. Shown only while dirty (see EditorToolbar.jsx), so there is
    no separate "clean" look to reconcile it with. */
-.toolbar {
+
+/* The toolbar's space opens and closes by animating the row height between
+   0fr and 1fr (animating `height` itself would need a fixed pixel value), so
+   the sections below slide down over 200ms instead of jumping. .slot is the
+   sticky element rather than .toolbar: sticky stops working inside an
+   overflow:hidden box, and .inner needs that to clip while it is collapsed.
+   .inner's padding holds the 16px gap below the toolbar and room for its
+   shadow, which the clipping would otherwise cut off; the negative margin
+   cancels the side padding. Fade and visibility ride along: closed, the bar
+   is invisible and out of the tab order, and visibility flips only once the
+   close animation has finished. */
+.slot {
     position: sticky;
     top: 0;
     z-index: 10;
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    visibility: hidden;
+    transition: grid-template-rows 200ms ease-in, opacity 150ms ease-in,
+        visibility 0s linear 200ms;
+}
+
+.open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    visibility: visible;
+    transition: grid-template-rows 200ms ease-out, opacity 200ms ease-out 50ms,
+        visibility 0s;
+}
+
+.inner {
+    min-height: 0;
+    margin: 0 calc(-1 * var(--spacers-dp8));
+    padding: 0 var(--spacers-dp8) var(--spacers-dp16);
+    overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .slot,
+    .open {
+        transition: none;
+    }
+}
+.toolbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: var(--spacers-dp16);
     gap: var(--spacers-dp16);
     padding: var(--spacers-dp8) var(--spacers-dp12);
     border-radius: 3px;

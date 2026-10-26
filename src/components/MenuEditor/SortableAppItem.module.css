@@ -89,9 +89,12 @@
     background: var(--colors-grey100);
 }
 
+/* Offset outwards, so the ring sits just outside the card's own border
+   instead of on top of it (where it merged with the grey300 edge). 1px +
+   2px still fits inside the 4px gap between cards. */
 .tile:focus-visible {
     outline: 2px solid var(--theme-focus);
-    outline-offset: -1px;
+    outline-offset: 1px;
 }
 
 .tile:active {
@@ -194,7 +197,16 @@
 
 .row:focus-visible {
     outline: 2px solid var(--theme-focus);
-    outline-offset: -1px;
+    outline-offset: 1px;
+}
+
+/* During a keyboard drag focus stays on the dimmed placeholder, where the
+   ring would be faded to 40% too. The DragOverlay copy carries it instead
+   (.overlay.keyboard below), so there is one clear ring: on the app being
+   moved. */
+.isDragging .tile:focus-visible,
+.isDragging .row:focus-visible {
+    outline: none;
 }
 
 .row:active {
@@ -230,4 +242,12 @@
 .filled.overlay.tile,
 .filled.overlay.row {
     border-color: transparent;
+}
+
+/* Keyboard drags only (set by MenuEditor): the same focus ring as a focused
+   tile/row, so it's clear which app the arrow keys are moving. A pointer
+   drag doesn't need it — the copy is right under the cursor. */
+.overlay.keyboard {
+    outline: 2px solid var(--theme-focus);
+    outline-offset: 1px;
 }
