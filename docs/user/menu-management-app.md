@@ -21,7 +21,7 @@ Keep these points in mind:
 
 Before you start, make sure that one of your user roles has the **Menu Management app** authority. An administrator sets user roles in the **Users** app. Users with all authorities, or with the **App Management app** authority, can also open the app.
 
-1. Open the **Menu Management** app. To find it, open the command palette and search for **Menu Management** (see [Command palette](command-palette.md)).
+1. Open the **Menu Management** app. To find it, open the command palette and search for **Menu Management** (see [Command palette](#command_palette)).
 2. Find the app that you want to move.
 3. Drag the app to its new position, and drop it. The other apps move to make room for it.
 4. Check that the message **Updated order of apps.** appears. DHIS2 saves the order each time that you drop an app, so you do not need to click a save button.
@@ -39,7 +39,7 @@ In v41, the order of the apps in the apps menu of the header bar follows the ord
 
 #### v42 and later { #menu_management_app_v42_and_later }
 
-From v42, the command palette shows the first eight apps in your order as **Top apps**. To see the other apps, choose **Browse apps**. For more about the command palette, see [Command palette](command-palette.md).
+From v42, the command palette shows the first eight apps in your order as **Top apps**. To see the other apps, choose **Browse apps**. For more about the command palette, see [Command palette](#command_palette).
 
 ![The command palette open over the Menu Management app, with the first eight apps in the user's order shown under Top apps](resources/images/menu-management-app-top-apps.png)
 
@@ -58,5 +58,5 @@ Table: Problems with the Menu Management app
 
 ## Related topics { #menu_management_app_related }
 
--   [Command palette](command-palette.md)
--   [Users](users-app.md)
+-   [Command palette](#command_palette)
+-   [Users](#users_app)
